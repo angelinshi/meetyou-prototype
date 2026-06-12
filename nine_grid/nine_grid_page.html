@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  html, body { margin: 0; padding: 0; background: #e2dbd5; }
+  .screen { width: 375px; height: 812px; border-radius: 40px; overflow: hidden; box-shadow: 0 24px 64px rgba(0,0,0,0.22), 0 4px 16px rgba(0,0,0,0.12); flex-shrink: 0; position: relative; background: #fff; font-family: -apple-system, 'PingFang SC', system-ui, sans-serif; }
+  .status { height: 50px; display: flex; align-items: flex-end; padding: 0 28px 8px; justify-content: space-between; font-size: 12px; font-weight: 600; color: #2a1f24; flex-shrink: 0; }
+  .status-white { color: #fff; }
+  .home-ind { height: 34px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .home-ind span { width: 134px; height: 5px; border-radius: 3px; background: rgba(0,0,0,0.2); }
+  .arrow-h { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; padding: 0 10px; flex-shrink: 0; }
+  .arrow-h-line { width: 72px; height: 2px; background: #b8a89e; position: relative; }
+  .arrow-h-line::after { content: ''; position: absolute; right: -1px; top: -4px; width: 0; height: 0; border-top: 5px solid transparent; border-bottom: 5px solid transparent; border-left: 9px solid #b8a89e; }
+  .arrow-h-label { font-size: 10px; color: #9c8e94; white-space: nowrap; letter-spacing: 0.2px; }
+  .arrow-v { display: flex; flex-direction: column; align-items: center; gap: 0; }
+  .arrow-v-line { width: 2px; height: 48px; background: #b8a89e; position: relative; }
+  .arrow-v-line::after { content: ''; position: absolute; bottom: -1px; left: -4px; width: 0; height: 0; border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 9px solid #b8a89e; }
+  .arrow-v-label { font-size: 10px; color: #9c8e94; white-space: nowrap; letter-spacing: 0.2px; margin-top: 4px; }
+  .screen-label { font-size: 13px; font-weight: 600; color: #5b4a52; text-align: center; margin-bottom: 10px; letter-spacing: 0.3px; }
+  .screen-num { display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px; border-radius: 9px; background: #ff4d88; color: #fff; font-size: 10px; font-weight: 700; margin-right: 5px; vertical-align: middle; }
+  .photo { width: 100%; height: 100%; object-fit: cover; display: block; }
+</style>
+</helmet>
+
+<div style="min-width: max-content; padding: 40px 48px 60px; background: #e2dbd5; min-height: 100vh;">
+
+  <!-- Title -->
+  <div style="margin-bottom: 36px;">
+    <div style="font-size: 22px; font-weight: 700; color: #2a1f24; letter-spacing: 0.5px; margin-bottom: 6px;">成长纪念卡 · 页面流程图</div>
+    <div style="font-size: 13px; color: #9c8e94;">8 个页面 · 1:1 设计稿 · 点击原型可完整体验交互</div>
+  </div>
+
+  <!-- ══ Row 1: Main flow ══ -->
+  <div style="display: flex; align-items: flex-start; gap: 0; margin-bottom: 0;">
+
+    <!-- S1 美柚首页 -->
+    <div>
+      <div class="screen-label"><span class="screen-num">1</span>美柚首页</div>
+      <div class="screen">
+        <!-- pink header -->
+        <div style="background: #f896b5; flex-shrink: 0;">
+          <div class="status status-white">
+            <span>9:41</span>
+            <div style="display:flex;gap:5px;align-items:center;">
+              <svg width="15" height="11" viewBox="0 0 15 11" fill="none"><rect x="0" y="2" width="3" height="9" rx="1" fill="white" opacity="0.4"></rect><rect x="4" y="1" width="3" height="10" rx="1" fill="white" opacity="0.6"></rect><rect x="8" y="0" width="3" height="11" rx="1" fill="white"></rect><rect x="12" y="0" width="3" height="11" rx="1" fill="white"></rect></svg>
+              <svg width="16" height="12" viewBox="0 0 24 12" fill="white"><path d="M1 4C1 2.34315 2.34315 1 4 1H20C21.6569 1 23 2.34315 23 4V8C23 9.65685 21.6569 11 20 11H4C2.34315 11 1 9.65685 1 8V4Z" stroke="white" stroke-opacity="0.35" stroke-width="1.2" fill="none"></path><rect x="2.5" y="2.5" width="16" height="7" rx="2" fill="white"></rect><path d="M23.5 4.5V7.5C24.3284 7.22 25 6.17 25 5.5C25 4.83 24.3284 3.78 23.5 4.5Z" fill="white" opacity="0.4"></path></svg>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:0 16px 6px;">
+            <div style="width:28px;height:28px;display:flex;align-items:center;justify-content:center;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3-3"></path></svg>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:13px;">
+              <span style="color:rgba(255,255,255,0.7);padding:3px 8px;border-bottom:2px solid transparent;">妈妈</span>
+              <span style="color:#fff;font-weight:600;padding:3px 8px;border-bottom:2px solid #fff;">胎宝宝</span>
+              <span style="color:rgba(255,255,255,0.7);padding:3px 8px;border-bottom:2px solid transparent;">宝宝</span>
+            </div>
+            <div style="width:28px;height:28px;"></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;padding:8px 14px 14px;">
+            <div style="width:44px;height:44px;border-radius:22px;background:#fff;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;">🤲</div>
+            <div>
+              <div style="font-size:15px;font-weight:500;color:#fff;">胎宝宝</div>
+              <div style="font-size:12px;color:rgba(255,255,255,0.9);margin-top:2px;">孕 36 周 5 天</div>
+            </div>
+            <div style="margin-left:auto;height:26px;padding:0 10px;border-radius:80px;background:#ff4d88;color:#fff;font-size:11px;font-weight:500;display:flex;align-items:center;">邀请准爸爸 ›</div>
+          </div>
+        </div>
+        <!-- banner -->
+        <div style="margin:10px 12px 0;background:#fff;border-radius:10px;padding:10px 12px;display:flex;align-items:center;justify-content:space-between;border:0.5px solid rgba(255,77,136,0.12);box-shadow:0 2px 8px rgba(80,35,48,0.06);">
+          <span style="font-size:12px;color:rgba(0,0,0,0.6);line-height:1.4;flex:1;">把散落的照片，拼成成长的样子</span>
+          <button style="flex-shrink:0;height:26px;padding:0 12px;border-radius:80px;border:1px solid #ff4d88;background:#fff;color:#ff4d88;font-size:12px;font-weight:500;cursor:pointer;">立即查看</button>
+        </div>
+        <!-- timeline -->
+        <div style="padding:14px 14px 0 22px;">
+          <div style="position:relative;padding-left:14px;">
+            <div style="position:absolute;left:0;top:8px;bottom:0;width:2px;background:rgba(0,0,0,0.08);border-radius:1px;"></div>
+            <div style="position:absolute;left:-3px;top:6px;width:8px;height:8px;border-radius:4px;background:#ff4d88;box-shadow:0 0 0 2px #f2f2f5;"></div>
+            <div style="font-size:12px;font-weight:500;color:rgba(0,0,0,0.7);margin-bottom:8px;">今天　孕36周5天</div>
+            <!-- ring card -->
+            <div style="background:#fff;border-radius:10px;padding:12px;border:0.5px solid rgba(255,77,136,0.12);box-shadow:0 3px 12px rgba(80,35,48,0.07);display:flex;align-items:center;gap:10px;">
+              <div style="flex-shrink:0;width:60px;height:60px;position:relative;">
+                <svg width="60" height="60" viewBox="0 0 60 60" style="position:absolute;left:0;top:0;transform:rotate(-88deg);transform-origin:50% 50%;">
+                  <circle cx="30" cy="30" r="26" fill="none" stroke="rgba(255,91,138,0.12)" stroke-width="3.5"></circle>
+                  <circle cx="30" cy="30" r="26" fill="none" stroke="#ff4d88" stroke-width="3.5" stroke-linecap="round" stroke-dasharray="36.2 163.4"></circle>
+                </svg>
+                <div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:38px;height:38px;border-radius:50%;overflow:hidden;border:1px solid rgba(255,255,255,0.9);box-shadow:0 1px 4px rgba(80,40,50,0.1);">
+                  <div style="display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr);gap:1px;width:100%;height:100%;background:#fff;box-sizing:border-box;">
+                    <div style="overflow:hidden;background:#ffd6e7;"><img src="assets/p1.jpg" alt="" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+                    <div style="overflow:hidden;background:#ffd6e7;"><img src="assets/p2.jpg" alt="" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+                    <div style="overflow:hidden;background:#fff3f7;border:0.5px dashed rgba(255,91,138,0.3);box-sizing:border-box;"></div>
+                    <div style="overflow:hidden;background:#fff3f7;border:0.5px dashed rgba(255,91,138,0.3);box-sizing:border-box;"></div>
+                    <div style="overflow:hidden;background:#fff3f7;border:0.5px dashed rgba(255,91,138,0.3);box-sizing:border-box;"></div>
+                    <div style="overflow:hidden;background:#fff3f7;border:0.5px dashed rgba(255,91,138,0.3);box-sizing:border-box;"></div>
+                    <div style="overflow:hidden;background:#fff3f7;border:0.5px dashed rgba(255,91,138,0.3);box-sizing:border-box;"></div>
+                    <div style="overflow:hidden;background:#fff3f7;border:0.5px dashed rgba(255,91,138,0.3);box-sizing:border-box;"></div>
+                    <div style="overflow:hidden;background:#fff3f7;border:0.5px dashed rgba(255,91,138,0.3);box-sizing:border-box;"></div>
+                  </div>
+                </div>
+              </div>
+              <div style="flex:1;min-width:0;">
+                <div style="font-size:12px;font-weight:500;color:rgba(0,0,0,0.8);margin-bottom:4px;line-height:1.35;">豆豆的专属九宫格 · 已完成<span style="color:#ff4d88;">22%</span></div>
+                <div style="font-size:10px;color:rgba(0,0,0,0.55);line-height:1.4;margin-bottom:8px;">已完成 <span style="color:#ff4d88;font-weight:500;">2/9</span> · 再填 7 格即可生成</div>
+                <button style="padding:4px 12px;border-radius:80px;border:0.5px solid rgba(255,91,138,0.18);background:#fff5f9;color:#ff4d88;font-size:11px;font-weight:500;cursor:pointer;">立即查看</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- bottom nav -->
+        <div style="position:absolute;bottom:0;left:0;right:0;background:#fff;border-top:0.5px solid rgba(0,0,0,0.07);padding:6px 4px 0;display:flex;justify-content:space-around;align-items:flex-end;">
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:4px 0;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 3L4 8v12h6v-7h4v7h6V8l-8-5z" fill="#ff4d88"></path></svg>
+            <span style="font-size:10px;color:#ff4d88;font-weight:500;">美柚</span>
+          </div>
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:4px 0;opacity:0.45;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke="#555" stroke-width="1.8"></rect><path d="M3 11h18" stroke="#555" stroke-width="1.8"></path></svg>
+            <span style="font-size:10px;color:#555;">记录</span>
+          </div>
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:4px 0;opacity:0.45;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8" stroke="#555" stroke-width="1.8"></circle></svg>
+            <span style="font-size:10px;color:#555;">返现</span>
+          </div>
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:4px 0;opacity:0.45;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 6h16v10H8l-4 3V6z" stroke="#555" stroke-width="1.8" stroke-linejoin="round"></path></svg>
+            <span style="font-size:10px;color:#555;">消息</span>
+          </div>
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:4px 0;opacity:0.45;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="9" r="4" stroke="#555" stroke-width="1.8"></circle><path d="M5 21v-2a7 7 0 0114 0v2" stroke="#555" stroke-width="1.8" stroke-linecap="round"></path></svg>
+            <span style="font-size:10px;color:#555;">我</span>
+          </div>
+        </div>
+        <div class="home-ind" style="position:absolute;bottom:4px;left:0;right:0;"><span style="background:rgba(0,0,0,0.18);"></span></div>
+      </div>
+    </div>
+
+    <!-- Arrow 1→2 -->
+    <div class="arrow-h" style="margin-top:232px;">
+      <div class="arrow-h-line"></div>
+      <div class="arrow-h-label">点击引导卡</div>
+    </div>
+
+    <!-- S2 圆环编辑 -->
+    <div>
+      <div class="screen-label"><span class="screen-num">2</span>圆环进度编辑页</div>
+      <div class="screen" style="background:#fffaf6;display:flex;flex-direction:column;">
+        <div style="background:#fffaf6;">
+          <div class="status">
+            <span>9:41</span>
+            <div style="display:flex;gap:5px;align-items:center;opacity:0.6;"><svg width="15" height="11" viewBox="0 0 15 11" fill="none"><rect x="0" y="2" width="3" height="9" rx="1" fill="#2a1f24" opacity="0.4"></rect><rect x="4" y="1" width="3" height="10" rx="1" fill="#2a1f24" opacity="0.6"></rect><rect x="8" y="0" width="3" height="11" rx="1" fill="#2a1f24"></rect><rect x="12" y="0" width="3" height="11" rx="1" fill="#2a1f24"></rect></svg></div>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:0 16px 8px;">
+            <div style="display:flex;align-items:center;gap:4px;font-size:12px;color:#9c8e94;"><svg width="8" height="12" viewBox="0 0 10 16" fill="none"><path d="M8.5 1L1.5 8L8.5 15" stroke="#9c8e94" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>返回</div>
+            <div style="font-size:15px;font-weight:600;color:#2a1f24;">替换照片</div>
+            <div><svg width="16" height="16" viewBox="0 0 18 18" fill="none"><rect x="1" y="1" width="7" height="7" rx="1.5" stroke="#2a1f24" stroke-width="1.5"></rect><rect x="10" y="1" width="7" height="7" rx="1.5" stroke="#2a1f24" stroke-width="1.5"></rect><rect x="1" y="10" width="7" height="7" rx="1.5" stroke="#2a1f24" stroke-width="1.5"></rect><rect x="10" y="10" width="7" height="7" rx="1.5" stroke="#2a1f24" stroke-width="1.5"></rect></svg></div>
+          </div>
+        </div>
+        <div style="flex:1;min-height:0;overflow-y:auto;padding:10px 14px;">
+          <!-- ring card -->
+          <div style="background:#fff;border-radius:10px;padding:12px;border:0.5px solid rgba(139,115,85,0.12);box-shadow:0 3px 14px rgba(80,35,48,0.07);display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+            <div style="flex-shrink:0;width:62px;height:62px;position:relative;">
+              <svg width="62" height="62" viewBox="0 0 62 62" style="position:absolute;left:0;top:0;transform:rotate(-88deg);transform-origin:50% 50%;">
+                <circle cx="31" cy="31" r="27" fill="none" stroke="rgba(255,91,138,0.12)" stroke-width="3.5"></circle>
+                <circle cx="31" cy="31" r="27" fill="none" stroke="#ff4d88" stroke-width="3.5" stroke-linecap="round" stroke-dasharray="37.5 169.6"></circle>
+              </svg>
+              <div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:40px;height:40px;border-radius:50%;overflow:hidden;border:1px solid rgba(255,255,255,0.9);box-shadow:0 1px 4px rgba(80,40,50,0.1);">
+                <div style="display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr);gap:1px;width:100%;height:100%;background:#fff;box-sizing:border-box;">
+                  <div style="overflow:hidden;"><img src="assets/p1.jpg" alt="" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+                  <div style="overflow:hidden;"><img src="assets/p2.jpg" alt="" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+                  <div style="overflow:hidden;background:#fff3f7;border:0.5px dashed rgba(255,91,138,0.3);box-sizing:border-box;"></div>
+                  <div style="overflow:hidden;background:#fff3f7;border:0.5px dashed rgba(255,91,138,0.3);box-sizing:border-box;"></div>
+                  <div style="overflow:hidden;background:#fff3f7;border:0.5px dashed rgba(255,91,138,0.3);box-sizing:border-box;"></div>
+                  <div style="overflow:hidden;background:#fff3f7;border:0.5px dashed rgba(255,91,138,0.3);box-sizing:border-box;"></div>
+                  <div style="overflow:hidden;background:#fff3f7;border:0.5px dashed rgba(255,91,138,0.3);box-sizing:border-box;"></div>
+                  <div style="overflow:hidden;background:#fff3f7;border:0.5px dashed rgba(255,91,138,0.3);box-sizing:border-box;"></div>
+                  <div style="overflow:hidden;background:#fff3f7;border:0.5px dashed rgba(255,91,138,0.3);box-sizing:border-box;"></div>
+                </div>
+              </div>
+            </div>
+            <div style="flex:1;min-width:0;">
+              <div style="font-size:12px;font-weight:500;color:rgba(0,0,0,0.8);margin-bottom:4px;">豆豆的专属九宫格 · 已完成<span style="color:#ff4d88;">22%</span></div>
+              <div style="font-size:10px;color:rgba(0,0,0,0.55);margin-bottom:8px;">已完成 <span style="color:#ff4d88;font-weight:500;">2/9</span> · 再填 7 格即可生成</div>
+              <button style="padding:4px 12px;border-radius:80px;border:0.5px solid rgba(255,91,138,0.18);background:#fff5f9;color:#ff4d88;font-size:11px;font-weight:500;">成品预览</button>
+            </div>
+          </div>
+          <!-- grid tabs -->
+          <div style="display:flex;gap:0;margin-bottom:8px;border-radius:10px;overflow:hidden;border:1px solid rgba(0,0,0,0.07);">
+            <div style="flex:1;height:34px;background:#fff9fb;display:flex;align-items:center;justify-content:center;border-right:1px solid rgba(0,0,0,0.07);"><span style="font-size:12px;font-weight:600;color:#ff4d88;">九格 · 9张</span></div>
+            <div style="flex:1;height:34px;background:#fff;display:flex;align-items:center;justify-content:center;"><span style="font-size:12px;color:#9c8e94;">四格 · 4张</span></div>
+          </div>
+          <!-- paper tabs -->
+          <div style="display:flex;gap:5px;margin-bottom:12px;flex-wrap:wrap;">
+            <div style="height:26px;padding:0 10px;border-radius:13px;border:1px solid #8b7355;background:rgba(255,255,255,0.9);display:flex;align-items:center;"><span style="font-size:11px;font-weight:500;color:#2a1f24;">暖棕经典</span></div>
+            <div style="height:26px;padding:0 10px;border-radius:13px;border:1px solid rgba(0,0,0,0.10);display:flex;align-items:center;"><span style="font-size:11px;color:rgba(0,0,0,0.38);">粉柔暖阳</span></div>
+            <div style="height:26px;padding:0 10px;border-radius:13px;border:1px solid rgba(0,0,0,0.10);display:flex;align-items:center;"><span style="font-size:11px;color:rgba(0,0,0,0.38);">清新成长</span></div>
+            <div style="height:26px;padding:0 10px;border-radius:13px;border:1px solid rgba(0,0,0,0.10);display:flex;align-items:center;"><span style="font-size:11px;color:rgba(0,0,0,0.38);">自然原色</span></div>
+          </div>
+          <!-- 九宫格 -->
+          <div style="border-radius:4px;background:#fffaf6;border:1.5px solid #8b7355;box-shadow:inset 0 0 0 5px #fff, inset 0 0 0 6px rgba(139,115,85,0.22), 0 8px 24px rgba(80,30,40,0.14);">
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px;padding:8px 8px 0;">
+              <div style="display:flex;flex-direction:column;border-radius:2px;overflow:hidden;">
+                <div style="aspect-ratio:1;overflow:hidden;"><img src="assets/p1.jpg" alt="" class="photo"></div>
+                <div style="height:18px;background:#fff;display:flex;align-items:center;justify-content:center;border-top:0.5px solid rgba(139,115,85,0.18);"><span style="font-size:8px;font-style:italic;font-family:'Noto Serif SC',serif;color:#5b4a52;">孕5周</span></div>
+              </div>
+              <div style="display:flex;flex-direction:column;border-radius:2px;overflow:hidden;">
+                <div style="aspect-ratio:1;overflow:hidden;"><img src="assets/p2.jpg" alt="" class="photo"></div>
+                <div style="height:18px;background:#fff;display:flex;align-items:center;justify-content:center;border-top:0.5px solid rgba(139,115,85,0.18);"><span style="font-size:8px;font-style:italic;font-family:'Noto Serif SC',serif;color:#5b4a52;">孕8周</span></div>
+              </div>
+              <div style="display:flex;flex-direction:column;border-radius:2px;overflow:hidden;background:#fff;">
+                <div style="aspect-ratio:1;overflow:hidden;background:#f7f1ea;position:relative;display:flex;align-items:center;justify-content:center;">
+                  <span style="width:30px;height:30px;border-radius:15px;border:1.5px dashed #ff5b8a;display:flex;align-items:center;justify-content:center;font-size:18px;color:#ff5b8a;background:rgba(255,255,255,0.88);">＋</span>
+                </div>
+                <div style="height:18px;background:#fff;display:flex;align-items:center;justify-content:center;border-top:0.5px solid rgba(139,115,85,0.18);"><span style="font-size:8px;font-style:italic;font-family:'Noto Serif SC',serif;color:#c4a09a;">孕12周</span></div>
+              </div>
+              <div style="display:flex;flex-direction:column;border-radius:2px;overflow:hidden;background:#fff;">
+                <div style="aspect-ratio:1;overflow:hidden;background:#f7f1ea;position:relative;display:flex;align-items:center;justify-content:center;">
+                  <span style="width:30px;height:30px;border-radius:15px;border:1.5px dashed #ff5b8a;display:flex;align-items:center;justify-content:center;font-size:18px;color:#ff5b8a;background:rgba(255,255,255,0.88);">＋</span>
+                </div>
+                <div style="height:18px;background:#fff;display:flex;align-items:center;justify-content:center;border-top:0.5px solid rgba(139,115,85,0.18);"><span style="font-size:8px;font-style:italic;font-family:'Noto Serif SC',serif;color:#c4a09a;">孕16周</span></div>
+              </div>
+              <div style="display:flex;flex-direction:column;border-radius:2px;overflow:hidden;background:#fff;">
+                <div style="aspect-ratio:1;overflow:hidden;background:#f7f1ea;position:relative;display:flex;align-items:center;justify-content:center;">
+                  <span style="width:30px;height:30px;border-radius:15px;border:1.5px dashed #ff5b8a;display:flex;align-items:center;justify-content:center;font-size:18px;color:#ff5b8a;background:rgba(255,255,255,0.88);">＋</span>
+                </div>
+                <div style="height:18px;background:#fff;display:flex;align-items:center;justify-content:center;border-top:0.5px solid rgba(139,115,85,0.18);"><span style="font-size:8px;font-style:italic;font-family:'Noto Serif SC',serif;color:#c4a09a;">孕20周</span></div>
+              </div>
+              <div style="display:flex;flex-direction:column;border-radius:2px;overflow:hidden;background:#fff;">
+                <div style="aspect-ratio:1;overflow:hidden;background:#f7f1ea;position:relative;display:flex;align-items:center;justify-content:center;">
+                  <span style="width:30px;height:30px;border-radius:15px;border:1.5px dashed #ff5b8a;display:flex;align-items:center;justify-content:center;font-size:18px;color:#ff5b8a;background:rgba(255,255,255,0.88);">＋</span>
+                </div>
+                <div style="height:18px;background:#fff;display:flex;align-items:center;justify-content:center;border-top:0.5px solid rgba(139,115,85,0.18);"><span style="font-size:8px;font-style:italic;font-family:'Noto Serif SC',serif;color:#c4a09a;">孕24周</span></div>
+              </div>
+              <div style="display:flex;flex-direction:column;border-radius:2px;overflow:hidden;background:#fff;">
+                <div style="aspect-ratio:1;overflow:hidden;background:#f7f1ea;position:relative;display:flex;align-items:center;justify-content:center;">
+                  <span style="width:30px;height:30px;border-radius:15px;border:1.5px dashed #ff5b8a;display:flex;align-items:center;justify-content:center;font-size:18px;color:#ff5b8a;background:rgba(255,255,255,0.88);">＋</span>
+                </div>
+                <div style="height:18px;background:#fff;display:flex;align-items:center;justify-content:center;border-top:0.5px solid rgba(139,115,85,0.18);"><span style="font-size:8px;font-style:italic;font-family:'Noto Serif SC',serif;color:#c4a09a;">孕28周</span></div>
+              </div>
+              <div style="display:flex;flex-direction:column;border-radius:2px;overflow:hidden;background:#fff;">
+                <div style="aspect-ratio:1;overflow:hidden;background:#f7f1ea;position:relative;display:flex;align-items:center;justify-content:center;">
+                  <span style="width:30px;height:30px;border-radius:15px;border:1.5px dashed #ff5b8a;display:flex;align-items:center;justify-content:center;font-size:18px;color:#ff5b8a;background:rgba(255,255,255,0.88);">＋</span>
+                </div>
+                <div style="height:18px;background:#fff;display:flex;align-items:center;justify-content:center;border-top:0.5px solid rgba(139,115,85,0.18);"><span style="font-size:8px;font-style:italic;font-family:'Noto Serif SC',serif;color:#c4a09a;">孕32周</span></div>
+              </div>
+              <div style="display:flex;flex-direction:column;border-radius:2px;overflow:hidden;background:#fff;">
+                <div style="aspect-ratio:1;overflow:hidden;background:#f7f1ea;position:relative;display:flex;align-items:center;justify-content:center;">
+                  <span style="width:30px;height:30px;border-radius:15px;border:1.5px dashed #ff5b8a;display:flex;align-items:center;justify-content:center;font-size:18px;color:#ff5b8a;background:rgba(255,255,255,0.88);">＋</span>
+                </div>
+                <div style="height:18px;background:#fff;display:flex;align-items:center;justify-content:center;border-top:0.5px solid rgba(139,115,85,0.18);"><span style="font-size:8px;font-style:italic;font-family:'Noto Serif SC',serif;color:#c4a09a;">出生</span></div>
+              </div>
+            </div>
+            <div style="padding:8px 12px 10px;text-align:center;border-top:1px solid rgba(139,115,85,0.22);background:#fffaf6;margin-top:8px;">
+              <div style="font-family:'Noto Serif SC',serif;font-size:14px;font-weight:600;letter-spacing:5px;color:#2a1f24;">豆 豆</div>
+              <div style="font-size:7.5px;letter-spacing:1px;color:#8b7355;margin-top:2px;">BIRTHDAY 2026.06.28 · WEIGHT 3.2KG · HEIGHT 50CM</div>
+            </div>
+          </div>
+        </div>
+        <!-- CTA -->
+        <div style="flex-shrink:0;padding:10px 16px 34px;background:linear-gradient(to top,#fffaf6 60%,rgba(255,250,246,0));">
+          <button style="width:100%;height:48px;border-radius:26px;border:0;background:rgba(255,91,138,0.35);color:rgba(255,255,255,0.7);font-size:14px;font-weight:700;letter-spacing:1px;cursor:pointer;font-family:inherit;">完成，生成纪念拼图</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Arrow 2→3 -->
+    <div class="arrow-h" style="margin-top:232px;">
+      <div class="arrow-h-line"></div>
+      <div class="arrow-h-label">全部填满</div>
+    </div>
+
+    <!-- S3 完成页 -->
+    <div>
+      <div class="screen-label"><span class="screen-num">3</span>完成页</div>
+      <div class="screen" style="background:#fffaf6;display:flex;flex-direction:column;overflow:hidden;">
+        <div class="status"><span>9:41</span></div>
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:4px 16px 10px;">
+          <div style="font-size:16px;color:#5b4a52;">✕</div>
+          <div><svg width="16" height="16" viewBox="0 0 18 18" fill="none"><rect x="1" y="1" width="7" height="7" rx="1.5" stroke="#2a1f24" stroke-width="1.5"></rect><rect x="10" y="1" width="7" height="7" rx="1.5" stroke="#2a1f24" stroke-width="1.5"></rect><rect x="1" y="10" width="7" height="7" rx="1.5" stroke="#2a1f24" stroke-width="1.5"></rect><rect x="10" y="10" width="7" height="7" rx="1.5" stroke="#2a1f24" stroke-width="1.5"></rect></svg></div>
+        </div>
+        <!-- confetti -->
+        <div style="position:absolute;top:0;left:0;right:0;height:300px;overflow:hidden;pointer-events:none;">
+          <div style="position:absolute;left:10%;top:60px;width:7px;height:12px;border-radius:2px;background:#ff5b8a;transform:rotate(20deg);"></div>
+          <div style="position:absolute;left:25%;top:80px;width:8px;height:8px;border-radius:50%;background:#f5c26b;"></div>
+          <div style="position:absolute;left:45%;top:55px;width:6px;height:12px;border-radius:2px;background:#7ab8f5;transform:rotate(-15deg);"></div>
+          <div style="position:absolute;left:65%;top:75px;width:8px;height:8px;border-radius:50%;background:#b78af5;"></div>
+          <div style="position:absolute;left:80%;top:65px;width:6px;height:12px;border-radius:2px;background:#ffa45e;transform:rotate(30deg);"></div>
+          <div style="position:absolute;left:15%;top:110px;width:6px;height:10px;border-radius:2px;background:#8fd6a8;transform:rotate(-25deg);"></div>
+          <div style="position:absolute;left:55%;top:100px;width:7px;height:7px;border-radius:50%;background:#ffd2dd;"></div>
+          <div style="position:absolute;left:72%;top:115px;width:6px;height:12px;border-radius:2px;background:#f5c26b;transform:rotate(10deg);"></div>
+        </div>
+        <div style="text-align:center;padding:4px 0 12px;">
+          <div style="font-family:'Noto Serif SC',serif;font-size:24px;font-weight:700;letter-spacing:2px;color:#2a1f24;">纪念卡已保存</div>
+          <div style="font-size:11px;color:#9c8e94;margin-top:4px;">已自动保存至时间轴</div>
+        </div>
+        <!-- card preview -->
+        <div style="display:flex;justify-content:center;">
+          <div style="width:232px;border-radius:4px;padding:9px 9px 11px;background:#fffaf6;border:1.5px solid #8b7355;box-shadow:inset 0 0 0 5px #fff, inset 0 0 0 6px rgba(139,115,85,0.22), 0 12px 32px rgba(80,30,40,0.16);">
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:3px;">
+              <div style="display:flex;flex-direction:column;border-radius:2px;overflow:hidden;"><div style="aspect-ratio:1;overflow:hidden;"><img src="assets/p1.jpg" alt="" class="photo"></div><div style="height:14px;background:#fff;display:flex;align-items:center;justify-content:center;"><span style="font-size:6.5px;font-style:italic;font-family:'Noto Serif SC',serif;color:#5b4a52;">孕5周</span></div></div>
+              <div style="display:flex;flex-direction:column;border-radius:2px;overflow:hidden;"><div style="aspect-ratio:1;overflow:hidden;"><img src="assets/p2.jpg" alt="" class="photo"></div><div style="height:14px;background:#fff;display:flex;align-items:center;justify-content:center;"><span style="font-size:6.5px;font-style:italic;font-family:'Noto Serif SC',serif;color:#5b4a52;">孕8周</span></div></div>
+              <div style="display:flex;flex-direction:column;border-radius:2px;overflow:hidden;"><div style="aspect-ratio:1;overflow:hidden;"><img src="assets/p3.jpg" alt="" class="photo"></div><div style="height:14px;background:#fff;display:flex;align-items:center;justify-content:center;"><span style="font-size:6.5px;font-style:italic;font-family:'Noto Serif SC',serif;color:#5b4a52;">孕12周</span></div></div>
+              <div style="display:flex;flex-direction:column;border-radius:2px;overflow:hidden;"><div style="aspect-ratio:1;overflow:hidden;"><img src="assets/p4.jpg" alt="" class="photo"></div><div style="height:14px;background:#fff;display:flex;align-items:center;justify-content:center;"><span style="font-size:6.5px;font-style:italic;font-family:'Noto Serif SC',serif;color:#5b4a52;">孕16周</span></div></div>
+              <div style="display:flex;flex-direction:column;border-radius:2px;overflow:hidden;"><div style="aspect-ratio:1;overflow:hidden;"><img src="assets/p5.jpg" alt="" class="photo"></div><div style="height:14px;background:#fff;display:flex;align-items:center;justify-content:center;"><span style="font-size:6.5px;font-style:italic;font-family:'Noto Serif SC',serif;color:#5b4a52;">孕20周</span></div></div>
+              <div style="display:flex;flex-direction:column;border-radius:2px;overflow:hidden;"><div style="aspect-ratio:1;overflow:hidden;"><img src="assets/p6.jpg" alt="" class="photo"></div><div style="height:14px;background:#fff;display:flex;align-items:center;justify-content:center;"><span style="font-size:6.5px;font-style:italic;font-family:'Noto Serif SC',serif;color:#5b4a52;">孕24周</span></div></div>
+              <div style="display:flex;flex-direction:column;border-radius:2px;overflow:hidden;"><div style="aspect-ratio:1;overflow:hidden;"><img src="assets/p7.jpg" alt="" class="photo"></div><div style="height:14px;background:#fff;display:flex;align-items:center;justify-content:center;"><span style="font-size:6.5px;font-style:italic;font-family:'Noto Serif SC',serif;color:#5b4a52;">孕28周</span></div></div>
+              <div style="display:flex;flex-direction:column;border-radius:2px;overflow:hidden;"><div style="aspect-ratio:1;overflow:hidden;"><img src="assets/p3.jpg" alt="" class="photo"></div><div style="height:14px;background:#fff;display:flex;align-items:center;justify-content:center;"><span style="font-size:6.5px;font-style:italic;font-family:'Noto Serif SC',serif;color:#5b4a52;">孕32周</span></div></div>
+              <div style="display:flex;flex-direction:column;border-radius:2px;overflow:hidden;"><div style="aspect-ratio:1;overflow:hidden;"><img src="assets/p2.jpg" alt="" class="photo"></div><div style="height:14px;background:#fff;display:flex;align-items:center;justify-content:center;"><span style="font-size:6.5px;font-style:italic;font-family:'Noto Serif SC',serif;color:#5b4a52;">出生</span></div></div>
+            </div>
+            <div style="padding:7px 10px 0;text-align:center;border-top:0.5px solid rgba(139,115,85,0.2);margin-top:7px;">
+              <div style="font-family:'Noto Serif SC',serif;font-size:13px;font-weight:600;letter-spacing:5px;color:#2a1f24;">豆 豆</div>
+              <div style="font-size:6.5px;letter-spacing:0.8px;color:#8b7355;margin-top:2px;">BIRTHDAY 2026.06.28 · WEIGHT 3.2KG</div>
+            </div>
+          </div>
+        </div>
+        <div style="padding:16px 20px 0;display:flex;flex-direction:column;gap:8px;">
+          <button style="width:100%;height:46px;border-radius:26px;border:0;background:linear-gradient(135deg,#ff6e9c,#ff5b8a);color:#fff;font-size:14px;font-weight:700;letter-spacing:1px;cursor:pointer;font-family:inherit;box-shadow:0 8px 18px -6px rgba(255,91,138,0.5);">再做一张</button>
+          <button style="width:100%;height:46px;border-radius:26px;border:1.5px solid #ff5b8a;background:#fff;color:#ff5b8a;font-size:14px;font-weight:700;letter-spacing:1px;cursor:pointer;font-family:inherit;">保存并分享</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Arrow 3→4 -->
+    <div class="arrow-h" style="margin-top:232px;">
+      <div class="arrow-h-line"></div>
+      <div class="arrow-h-label">我的作品 icon</div>
+    </div>
+
+    <!-- S4 我的作品 -->
+    <div>
+      <div class="screen-label"><span class="screen-num">4</span>我的作品</div>
+      <div class="screen" style="background:#fffaf6;display:flex;flex-direction:column;">
+        <div class="status"><span>9:41</span></div>
+        <div style="display:flex;align-items:center;padding:4px 8px 10px;gap:4px;">
+          <div style="width:32px;height:32px;display:flex;align-items:center;justify-content:center;"><svg width="9" height="14" viewBox="0 0 10 16" fill="none"><path d="M8.5 1L1.5 8L8.5 15" stroke="#2a1f24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+          <div style="font-size:16px;font-weight:600;color:#2a1f24;">我的作品</div>
+        </div>
+        <div style="padding:0 16px;flex:1;">
+          <!-- work 1 -->
+          <div style="display:flex;align-items:center;gap:12px;padding:14px 0;border-bottom:0.5px solid #f0e2d8;">
+            <div style="width:68px;height:68px;flex-shrink:0;border-radius:4px;padding:3px;background:#fffaf6;border:1px solid #8b7355;box-shadow:inset 0 0 0 2px #fff;box-sizing:border-box;">
+              <div style="display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr);gap:1px;height:100%;">
+                <div style="overflow:hidden;"><img src="assets/p1.jpg" alt="" class="photo"></div>
+                <div style="overflow:hidden;"><img src="assets/p2.jpg" alt="" class="photo"></div>
+                <div style="overflow:hidden;"><img src="assets/p3.jpg" alt="" class="photo"></div>
+                <div style="overflow:hidden;"><img src="assets/p4.jpg" alt="" class="photo"></div>
+                <div style="overflow:hidden;"><img src="assets/p5.jpg" alt="" class="photo"></div>
+                <div style="overflow:hidden;"><img src="assets/p6.jpg" alt="" class="photo"></div>
+                <div style="overflow:hidden;"><img src="assets/p7.jpg" alt="" class="photo"></div>
+                <div style="overflow:hidden;"><img src="assets/p2.jpg" alt="" class="photo"></div>
+                <div style="overflow:hidden;"><img src="assets/p3.jpg" alt="" class="photo"></div>
+              </div>
+            </div>
+            <div style="flex:1;min-width:0;">
+              <div style="font-size:13px;font-weight:500;color:#2a1f24;">九格 · 暖棕经典·文案</div>
+              <div style="font-size:10px;color:#9c8e94;margin-top:3px;">2026.05.18</div>
+            </div>
+            <button style="flex-shrink:0;height:30px;padding:0 13px;border-radius:15px;border:0;background:#ff4d88;color:#fff;font-size:11px;font-weight:500;cursor:pointer;font-family:inherit;">立即印制</button>
+          </div>
+          <!-- work 2 -->
+          <div style="display:flex;align-items:center;gap:12px;padding:14px 0;border-bottom:0.5px solid #f0e2d8;">
+            <div style="width:68px;height:68px;flex-shrink:0;border-radius:4px;padding:3px;background:#fff5f8;border:1px solid #d4899a;box-shadow:inset 0 0 0 2px #fff;box-sizing:border-box;">
+              <div style="display:grid;grid-template-columns:repeat(2,1fr);grid-template-rows:repeat(2,1fr);gap:1px;height:100%;">
+                <div style="overflow:hidden;"><img src="assets/p1.jpg" alt="" class="photo"></div>
+                <div style="overflow:hidden;"><img src="assets/p2.jpg" alt="" class="photo"></div>
+                <div style="overflow:hidden;"><img src="assets/p3.jpg" alt="" class="photo"></div>
+                <div style="overflow:hidden;"><img src="assets/p4.jpg" alt="" class="photo"></div>
+              </div>
+            </div>
+            <div style="flex:1;min-width:0;">
+              <div style="font-size:13px;font-weight:500;color:#2a1f24;">四格 · 粉柔暖阳</div>
+              <div style="font-size:10px;color:#9c8e94;margin-top:3px;">2026.05.15</div>
+            </div>
+            <button style="flex-shrink:0;height:30px;padding:0 13px;border-radius:15px;border:1px solid rgba(79,124,174,0.45);background:#f2f6fa;color:#4f7cae;font-size:11px;font-weight:500;cursor:pointer;font-family:inherit;">立即查看</button>
+          </div>
+          <!-- work 3 -->
+          <div style="display:flex;align-items:center;gap:12px;padding:14px 0;">
+            <div style="width:68px;height:68px;flex-shrink:0;border-radius:4px;padding:3px;background:#f6fbf8;border:1px solid #7aab8e;box-shadow:inset 0 0 0 2px #fff;box-sizing:border-box;">
+              <div style="display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr);gap:1px;height:100%;">
+                <div style="overflow:hidden;"><img src="assets/p3.jpg" alt="" class="photo"></div>
+                <div style="overflow:hidden;"><img src="assets/p4.jpg" alt="" class="photo"></div>
+                <div style="overflow:hidden;"><img src="assets/p5.jpg" alt="" class="photo"></div>
+                <div style="overflow:hidden;"><img src="assets/p1.jpg" alt="" class="photo"></div>
+                <div style="overflow:hidden;"><img src="assets/p2.jpg" alt="" class="photo"></div>
+                <div style="overflow:hidden;"><img src="assets/p6.jpg" alt="" class="photo"></div>
+                <div style="overflow:hidden;"><img src="assets/p7.jpg" alt="" class="photo"></div>
+                <div style="overflow:hidden;"><img src="assets/p1.jpg" alt="" class="photo"></div>
+                <div style="overflow:hidden;"><img src="assets/p2.jpg" alt="" class="photo"></div>
+              </div>
+            </div>
+            <div style="flex:1;min-width:0;">
+              <div style="font-size:13px;font-weight:500;color:#2a1f24;">九格 · 清新成长·文案</div>
+              <div style="font-size:10px;color:#9c8e94;margin-top:3px;">2026.05.10</div>
+            </div>
+            <button style="flex-shrink:0;height:30px;padding:0 13px;border-radius:15px;border:1px solid rgba(79,124,174,0.45);background:#f2f6fa;color:#4f7cae;font-size:11px;font-weight:500;cursor:pointer;font-family:inherit;">立即查看</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ Row 2: Branch screens ══ -->
+  <div style="display:flex;align-items:flex-start;gap:0;margin-top:0;padding-left:375px;">
+
+    <!-- vertical arrow down from S2 -->
+    <div style="display:flex;flex-direction:column;align-items:center;width:375px;margin-top:0;">
+      <div class="arrow-v">
+        <div class="arrow-v-line"></div>
+        <div class="arrow-v-label">点击成品预览</div>
+      </div>
+    </div>
+
+    <!-- S2 分支 2: 相册选择 -->
+    <div style="width:16px;"></div>
+
+    <!-- vertical arrow: S2 -> S6 -->
+    <div style="display:flex;flex-direction:column;align-items:center;width:68px;margin-top:0;">
+      <div class="arrow-v">
+        <div class="arrow-v-line"></div>
+        <div class="arrow-v-label">点击格子替换照片</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display:flex;align-items:flex-start;gap:0;padding-left:375px;">
+    <!-- S5 成品预览 -->
+    <div>
+      <div class="screen-label"><span class="screen-num">5</span>成品预览</div>
+      <div class="screen" style="background:#faf6f2;display:flex;flex-direction:column;">
+        <div class="status"><span>9:41</span></div>
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:4px 16px 6px;">
+          <div style="display:flex;align-items:center;gap:4px;font-size:12px;color:#9c8e94;"><svg width="8" height="12" viewBox="0 0 10 16" fill="none"><path d="M8.5 1L1.5 8L8.5 15" stroke="#9c8e94" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>返回</div>
+          <div style="font-size:15px;font-weight:600;color:#2a1f24;">成品预览</div>
+          <div style="width:40px;"></div>
+        </div>
+        <div style="display:flex;justify-content:center;padding:4px 16px 8px;">
+          <div style="display:inline-flex;align-items:center;gap:5px;padding:5px 12px;border-radius:80px;background:#fff;border:0.5px solid rgba(255,77,136,0.15);box-shadow:0 3px 12px rgba(80,35,48,0.06);">
+            <span style="width:5px;height:5px;border-radius:50%;background:#ff4d88;flex-shrink:0;"></span>
+            <span style="font-size:11px;color:#2a1f24;"><span style="color:#ff4d88;font-weight:600;">12,847</span> 位妈妈已为宝宝生成</span>
+          </div>
+        </div>
+        <div style="text-align:center;padding:0 20px 8px;">
+          <div style="font-family:'Noto Serif SC',serif;font-size:18px;font-weight:700;color:#2a1f24;line-height:1.35;">四格与九格，拼出你的故事</div>
+          <div style="font-size:11px;color:#9c8e94;margin-top:4px;line-height:1.5;">下滑浏览不同纸框样式成品，选最适合你相册的一种</div>
+        </div>
+        <div style="flex:1;overflow-y:auto;padding:0 10px 20px;">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+            <!-- card 1 -->
+            <div style="background:#fff;border-radius:10px;overflow:hidden;border:0.5px solid rgba(0,0,0,0.06);box-shadow:0 3px 12px rgba(80,35,48,0.06);">
+              <div style="background:#f7f0e8;padding:8px;display:flex;align-items:center;justify-content:center;">
+                <div style="width:100%;background:#fffaf6;border:1.5px solid #8b7355;border-radius:3px;padding:3px;box-shadow:inset 0 0 0 2px #fff;box-sizing:border-box;">
+                  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.5px;">
+                    <div style="aspect-ratio:1;overflow:hidden;border-radius:1px;"><img src="assets/p1.jpg" alt="" class="photo"></div>
+                    <div style="aspect-ratio:1;overflow:hidden;border-radius:1px;"><img src="assets/p2.jpg" alt="" class="photo"></div>
+                    <div style="aspect-ratio:1;overflow:hidden;border-radius:1px;"><img src="assets/p3.jpg" alt="" class="photo"></div>
+                    <div style="aspect-ratio:1;overflow:hidden;border-radius:1px;"><img src="assets/p4.jpg" alt="" class="photo"></div>
+                    <div style="aspect-ratio:1;overflow:hidden;border-radius:1px;"><img src="assets/p5.jpg" alt="" class="photo"></div>
+                    <div style="aspect-ratio:1;overflow:hidden;border-radius:1px;"><img src="assets/p6.jpg" alt="" class="photo"></div>
+                    <div style="aspect-ratio:1;overflow:hidden;border-radius:1px;"><img src="assets/p7.jpg" alt="" class="photo"></div>
+                    <div style="aspect-ratio:1;overflow:hidden;border-radius:1px;"><img src="assets/p2.jpg" alt="" class="photo"></div>
+                    <div style="aspect-ratio:1;overflow:hidden;border-radius:1px;"><img src="assets/p3.jpg" alt="" class="photo"></div>
+                  </div>
+                </div>
+              </div>
+              <div style="padding:8px 8px 10px;">
+                <div style="font-size:9px;font-weight:500;color:#ff4d88;background:rgba(255,77,136,0.08);padding:1.5px 6px;border-radius:3px;margin-bottom:4px;display:inline-block;">孕期时光</div>
+                <div style="font-family:'Noto Serif SC',serif;font-size:11px;font-weight:500;color:#2a1f24;margin-bottom:3px;line-height:1.3;">九格 · 暖棕经典·文案</div>
+                <div style="font-size:9px;color:#9c8e94;margin-bottom:7px;line-height:1.4;">暖棕双层边框，孕周标注</div>
+                <div style="display:flex;align-items:center;justify-content:flex-end;">
+                  <button style="height:22px;padding:0 10px;border-radius:11px;border:0;background:linear-gradient(135deg,#ff6e9c,#ff4d88);color:#fff;font-size:9.5px;font-weight:500;cursor:pointer;font-family:inherit;">做同款</button>
+                </div>
+              </div>
+            </div>
+            <!-- card 2 -->
+            <div style="background:#fff;border-radius:10px;overflow:hidden;border:0.5px solid rgba(0,0,0,0.06);box-shadow:0 3px 12px rgba(80,35,48,0.06);">
+              <div style="background:#ffeff4;padding:8px;display:flex;align-items:center;justify-content:center;">
+                <div style="width:100%;background:#fff5f8;border:1.5px solid #d4899a;border-radius:3px;padding:3px;box-shadow:inset 0 0 0 2px #fff;box-sizing:border-box;">
+                  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.5px;">
+                    <div style="aspect-ratio:1;overflow:hidden;border-radius:1px;"><img src="assets/p2.jpg" alt="" class="photo"></div>
+                    <div style="aspect-ratio:1;overflow:hidden;border-radius:1px;"><img src="assets/p3.jpg" alt="" class="photo"></div>
+                    <div style="aspect-ratio:1;overflow:hidden;border-radius:1px;"><img src="assets/p4.jpg" alt="" class="photo"></div>
+                    <div style="aspect-ratio:1;overflow:hidden;border-radius:1px;"><img src="assets/p5.jpg" alt="" class="photo"></div>
+                    <div style="aspect-ratio:1;overflow:hidden;border-radius:1px;"><img src="assets/p1.jpg" alt="" class="photo"></div>
+                    <div style="aspect-ratio:1;overflow:hidden;border-radius:1px;"><img src="assets/p6.jpg" alt="" class="photo"></div>
+                    <div style="aspect-ratio:1;overflow:hidden;border-radius:1px;"><img src="assets/p7.jpg" alt="" class="photo"></div>
+                    <div style="aspect-ratio:1;overflow:hidden;border-radius:1px;"><img src="assets/p1.jpg" alt="" class="photo"></div>
+                    <div style="aspect-ratio:1;overflow:hidden;border-radius:1px;"><img src="assets/p2.jpg" alt="" class="photo"></div>
+                  </div>
+                </div>
+              </div>
+              <div style="padding:8px 8px 10px;">
+                <div style="font-size:9px;font-weight:500;color:#ff4d88;background:rgba(255,77,136,0.08);padding:1.5px 6px;border-radius:3px;margin-bottom:4px;display:inline-block;">孕期时光</div>
+                <div style="font-family:'Noto Serif SC',serif;font-size:11px;font-weight:500;color:#2a1f24;margin-bottom:3px;line-height:1.3;">九格 · 粉柔暖阳</div>
+                <div style="font-size:9px;color:#9c8e94;margin-bottom:7px;line-height:1.4;">粉边柔底，温柔留念</div>
+                <div style="display:flex;align-items:center;justify-content:flex-end;">
+                  <button style="height:22px;padding:0 10px;border-radius:11px;border:0;background:linear-gradient(135deg,#ff6e9c,#ff4d88);color:#fff;font-size:9.5px;font-weight:500;cursor:pointer;font-family:inherit;">做同款</button>
+                </div>
+              </div>
+            </div>
+            <!-- card 3 -->
+            <div style="background:#fff;border-radius:10px;overflow:hidden;border:0.5px solid rgba(0,0,0,0.06);box-shadow:0 3px 12px rgba(80,35,48,0.06);">
+              <div style="background:#edf7f1;padding:8px;display:flex;align-items:center;justify-content:center;">
+                <div style="width:100%;background:#f6fbf8;border:1.5px solid #7aab8e;border-radius:3px;padding:4px;box-shadow:inset 0 0 0 2px #fff;box-sizing:border-box;">
+                  <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:2px;">
+                    <div style="aspect-ratio:1;overflow:hidden;border-radius:1px;"><img src="assets/p1.jpg" alt="" class="photo"></div>
+                    <div style="aspect-ratio:1;overflow:hidden;border-radius:1px;"><img src="assets/p3.jpg" alt="" class="photo"></div>
+                    <div style="aspect-ratio:1;overflow:hidden;border-radius:1px;"><img src="assets/p5.jpg" alt="" class="photo"></div>
+                    <div style="aspect-ratio:1;overflow:hidden;border-radius:1px;"><img src="assets/p7.jpg" alt="" class="photo"></div>
+                  </div>
+                </div>
+              </div>
+              <div style="padding:8px 8px 10px;">
+                <div style="font-size:9px;font-weight:500;color:#ff4d88;background:rgba(255,77,136,0.08);padding:1.5px 6px;border-radius:3px;margin-bottom:4px;display:inline-block;">宝宝成长</div>
+                <div style="font-family:'Noto Serif SC',serif;font-size:11px;font-weight:500;color:#2a1f24;margin-bottom:3px;line-height:1.3;">四格 · 清新成长</div>
+                <div style="font-size:9px;color:#9c8e94;margin-bottom:7px;line-height:1.4;">薄荷绿边，四帧留念</div>
+                <div style="display:flex;align-items:center;justify-content:flex-end;">
+                  <button style="height:22px;padding:0 10px;border-radius:11px;border:0;background:linear-gradient(135deg,#ff6e9c,#ff4d88);color:#fff;font-size:9.5px;font-weight:500;cursor:pointer;font-family:inherit;">做同款</button>
+                </div>
+              </div>
+            </div>
+            <!-- card 4 -->
+            <div style="background:#fff;border-radius:10px;overflow:hidden;border:0.5px solid rgba(0,0,0,0.06);box-shadow:0 3px 12px rgba(80,35,48,0.06);">
+              <div style="background:#f3e8d6;padding:8px;display:flex;align-items:center;justify-content:center;">
+                <div style="width:100%;background:#faf4ea;border:1.5px solid #a08050;border-radius:3px;padding:3px;box-shadow:inset 0 0 0 2px #fff;box-sizing:border-box;">
+                  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.5px;">
+                    <div style="aspect-ratio:1;overflow:hidden;border-radius:1px;"><img src="assets/p4.jpg" alt="" class="photo"></div>
+                    <div style="aspect-ratio:1;overflow:hidden;border-radius:1px;"><img src="assets/p5.jpg" alt="" class="photo"></div>
+                    <div style="aspect-ratio:1;overflow:hidden;border-radius:1px;"><img src="assets/p6.jpg" alt="" class="photo"></div>
+                    <div style="aspect-ratio:1;overflow:hidden;border-radius:1px;"><img src="assets/p2.jpg" alt="" class="photo"></div>
+                    <div style="aspect-ratio:1;overflow:hidden;border-radius:1px;"><img src="assets/p1.jpg" alt="" class="photo"></div>
+                    <div style="aspect-ratio:1;overflow:hidden;border-radius:1px;"><img src="assets/p7.jpg" alt="" class="photo"></div>
+                    <div style="aspect-ratio:1;overflow:hidden;border-radius:1px;"><img src="assets/p3.jpg" alt="" class="photo"></div>
+                    <div style="aspect-ratio:1;overflow:hidden;border-radius:1px;"><img src="assets/p6.jpg" alt="" class="photo"></div>
+                    <div style="aspect-ratio:1;overflow:hidden;border-radius:1px;"><img src="assets/p4.jpg" alt="" class="photo"></div>
+                  </div>
+                </div>
+              </div>
+              <div style="padding:8px 8px 10px;">
+                <div style="font-size:9px;font-weight:500;color:#ff4d88;background:rgba(255,77,136,0.08);padding:1.5px 6px;border-radius:3px;margin-bottom:4px;display:inline-block;">宝宝成长</div>
+                <div style="font-family:'Noto Serif SC',serif;font-size:11px;font-weight:500;color:#2a1f24;margin-bottom:3px;line-height:1.3;">九格 · 自然原色</div>
+                <div style="font-size:9px;color:#9c8e94;margin-bottom:7px;line-height:1.4;">自然原色，适合长久珍藏</div>
+                <div style="display:flex;align-items:center;justify-content:flex-end;">
+                  <button style="height:22px;padding:0 10px;border-radius:11px;border:0;background:linear-gradient(135deg,#ff6e9c,#ff4d88);color:#fff;font-size:9.5px;font-weight:500;cursor:pointer;font-family:inherit;">做同款</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- gap between S2 branches -->
+    <div style="width:16px;">
+      <div style="display:none;">
+        <div style="width:72px;height:2px;background:#b8a89e;position:relative;"><div style="position:absolute;right:-1px;top:-4px;width:0;height:0;border-top:5px solid transparent;border-bottom:5px solid transparent;border-left:9px solid #b8a89e;"></div></div>
+        <span style="font-size:10px;color:#9c8e94;white-space:nowrap;">点击格子</span>
+      </div>
+    </div>
+
+    <!-- S6 全屏相册 -->
+    <div>
+      <div class="screen-label"><span class="screen-num">6</span>全屏相册选择</div>
+      <div class="screen" style="background:#000;display:flex;flex-direction:column;color:rgba(255,255,255,0.9);">
+        <div class="status status-white"><span>9:41</span></div>
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:4px 14px 8px;">
+          <div style="width:32px;height:32px;display:flex;align-items:center;justify-content:center;font-size:18px;color:rgba(255,255,255,0.85);">✕</div>
+          <div style="display:flex;align-items:center;gap:3px;font-size:15px;font-weight:500;">宝宝的云相册<span style="font-size:10px;opacity:0.7;">▼</span></div>
+          <div style="width:32px;"></div>
+        </div>
+        <div style="flex:1;overflow-y:auto;">
+          <!-- date group 1 -->
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 14px 6px;background:rgba(0,0,0,0.72);position:sticky;top:0;z-index:2;border-bottom:0.5px solid rgba(255,255,255,0.08);">
+            <span style="font-size:13px;font-weight:500;">2026年5月17日</span>
+            <span style="color:#ff4d88;font-size:13px;font-weight:500;">全选</span>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:2px;padding:0 2px 12px;">
+            <div style="aspect-ratio:1;overflow:hidden;border-radius:1px;position:relative;box-shadow:inset 0 0 0 2px #ff4d88;">
+              <img src="assets/p1.jpg" alt="" class="photo">
+              <div style="position:absolute;top:4px;right:4px;width:16px;height:16px;border-radius:8px;background:#ff4d88;color:#fff;font-size:9px;display:flex;align-items:center;justify-content:center;">✓</div>
+            </div>
+            <div style="aspect-ratio:1;overflow:hidden;border-radius:1px;position:relative;">
+              <img src="assets/p2.jpg" alt="" class="photo">
+              <div style="position:absolute;top:4px;right:4px;width:16px;height:16px;border-radius:8px;border:1.5px solid rgba(255,255,255,0.92);background:rgba(0,0,0,0.25);"></div>
+            </div>
+            <div style="aspect-ratio:1;overflow:hidden;border-radius:1px;position:relative;">
+              <img src="assets/p3.jpg" alt="" class="photo">
+              <div style="position:absolute;bottom:4px;left:4px;width:13px;height:13px;pointer-events:none;"><svg viewBox="0 0 24 24" width="13" height="13" fill="none"><circle cx="12" cy="12" r="9" stroke="#fff" stroke-opacity="0.9" stroke-width="1.5"></circle><circle cx="12" cy="12" r="4" fill="#fff" fill-opacity="0.95"></circle></svg></div>
+            </div>
+            <div style="aspect-ratio:1;overflow:hidden;border-radius:1px;position:relative;">
+              <img src="assets/p4.jpg" alt="" class="photo">
+            </div>
+            <div style="aspect-ratio:1;overflow:hidden;border-radius:1px;position:relative;">
+              <img src="assets/p5.jpg" alt="" class="photo">
+            </div>
+            <div style="aspect-ratio:1;overflow:hidden;border-radius:1px;position:relative;">
+              <img src="assets/p6.jpg" alt="" class="photo">
+              <div style="position:absolute;bottom:4px;left:4px;width:13px;height:13px;pointer-events:none;"><svg viewBox="0 0 24 24" width="13" height="13" fill="none"><circle cx="12" cy="12" r="9" stroke="#fff" stroke-opacity="0.9" stroke-width="1.5"></circle><circle cx="12" cy="12" r="4" fill="#fff" fill-opacity="0.95"></circle></svg></div>
+            </div>
+            <div style="aspect-ratio:1;overflow:hidden;border-radius:1px;">
+              <img src="assets/p7.jpg" alt="" class="photo">
+            </div>
+          </div>
+          <!-- date group 2 -->
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 14px 6px;background:rgba(0,0,0,0.72);border-bottom:0.5px solid rgba(255,255,255,0.08);">
+            <span style="font-size:13px;font-weight:500;">2026年5月16日</span>
+            <span style="color:#ff4d88;font-size:13px;font-weight:500;">全选</span>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:2px;padding:0 2px 12px;">
+            <div style="aspect-ratio:1;overflow:hidden;border-radius:1px;"><img src="assets/p2.jpg" alt="" class="photo"></div>
+            <div style="aspect-ratio:1;overflow:hidden;border-radius:1px;"><img src="assets/p4.jpg" alt="" class="photo"></div>
+            <div style="aspect-ratio:1;overflow:hidden;border-radius:1px;"><img src="assets/p1.jpg" alt="" class="photo"></div>
+            <div style="aspect-ratio:1;overflow:hidden;border-radius:1px;"><img src="assets/p6.jpg" alt="" class="photo"></div>
+          </div>
+        </div>
+        <div style="flex-shrink:0;border-top:0.5px solid rgba(255,255,255,0.1);background:#0a0a0a;padding:10px 14px 26px;display:flex;align-items:center;justify-content:space-between;">
+          <span style="font-size:12px;color:rgba(255,255,255,0.85);">请选择一张照片</span>
+          <button style="height:28px;padding:0 14px;border-radius:6px;border:0;background:#ff4d88;color:#fff;font-size:12px;font-weight:500;cursor:pointer;font-family:inherit;">完成</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Flow legend -->
+  <div style="margin-top:48px;padding:20px 24px;background:rgba(255,255,255,0.55);border-radius:14px;max-width:860px;backdrop-filter:blur(8px);">
+    <div style="font-size:13px;font-weight:600;color:#2a1f24;margin-bottom:12px;">页面关系说明</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+      <div style="display:flex;align-items:flex-start;gap:8px;">
+        <span style="flex-shrink:0;width:6px;height:6px;border-radius:3px;background:#ff4d88;margin-top:5px;"></span>
+        <div><div style="font-size:12px;font-weight:500;color:#2a1f24;">① 美柚首页 → ② 圆环编辑</div><div style="font-size:11px;color:#9c8e94;margin-top:2px;">点击引导横幅或圆环卡「立即查看」</div></div>
+      </div>
+      <div style="display:flex;align-items:flex-start;gap:8px;">
+        <span style="flex-shrink:0;width:6px;height:6px;border-radius:3px;background:#ff4d88;margin-top:5px;"></span>
+        <div><div style="font-size:12px;font-weight:500;color:#2a1f24;">② 圆环编辑 → ③ 完成页</div><div style="font-size:11px;color:#9c8e94;margin-top:2px;">九格全部填满后点「完成，生成纪念拼图」</div></div>
+      </div>
+      <div style="display:flex;align-items:flex-start;gap:8px;">
+        <span style="flex-shrink:0;width:6px;height:6px;border-radius:3px;background:#b8a89e;margin-top:5px;"></span>
+        <div><div style="font-size:12px;font-weight:500;color:#2a1f24;">② 圆环编辑 → ⑤ 成品预览</div><div style="font-size:11px;color:#9c8e94;margin-top:2px;">点击进度卡下方「成品预览」按钮（待上传/未到时间态）</div></div>
+      </div>
+      <div style="display:flex;align-items:flex-start;gap:8px;">
+        <span style="flex-shrink:0;width:6px;height:6px;border-radius:3px;background:#b8a89e;margin-top:5px;"></span>
+        <div><div style="font-size:12px;font-weight:500;color:#2a1f24;">② 圆环编辑 → ⑥ 全屏相册</div><div style="font-size:11px;color:#9c8e94;margin-top:2px;">点击九宫格「＋」格或「替换照片」</div></div>
+      </div>
+      <div style="display:flex;align-items:flex-start;gap:8px;">
+        <span style="flex-shrink:0;width:6px;height:6px;border-radius:3px;background:#ff4d88;margin-top:5px;"></span>
+        <div><div style="font-size:12px;font-weight:500;color:#2a1f24;">③ 完成页 → ④ 我的作品</div><div style="font-size:11px;color:#9c8e94;margin-top:2px;">点击右上角我的作品 icon</div></div>
+      </div>
+      <div style="display:flex;align-items:flex-start;gap:8px;">
+        <span style="flex-shrink:0;width:6px;height:6px;border-radius:3px;background:#b8a89e;margin-top:5px;"></span>
+        <div><div style="font-size:12px;font-weight:500;color:#2a1f24;">⑤ 成品预览 → ② 圆环编辑</div><div style="font-size:11px;color:#9c8e94;margin-top:2px;">点击「做同款」自动切换模板跳回编辑页</div></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>
