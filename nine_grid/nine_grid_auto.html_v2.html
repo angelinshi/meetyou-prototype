@@ -1,0 +1,1284 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  html, body { margin: 0; padding: 0; }
+  @keyframes confettiFall {
+    0% { transform: translateY(-30px) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(920px) rotate(380deg); opacity: 0.85; }
+  }
+  @keyframes sheetUp {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+</style>
+</helmet>
+<div style="min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; background: #ebe5df; padding: 36px 20px; gap: 20px;">
+  <!-- Demo 控制面板（仅演示用，不面向用户） -->
+  <sc-if value="{{ isPush }}" hint-placeholder-val="{{ false }}">
+    <div style="display: flex; align-items: center; gap: 10px; padding: 6px 8px; background: rgba(255,255,255,0.82); border-radius: 80px; box-shadow: 0 2px 12px rgba(0,0,0,0.10); backdrop-filter: blur(8px);">
+      <span style="font-size: 11px; color: #9c8e94; padding: 0 6px; white-space: nowrap; letter-spacing: 0.3px;">演示状态</span>
+      <sc-for list="{{ pushTweakOpts }}" as="tw" hint-placeholder-count="3">
+        <div onClick="{{ tw.onTap }}" style="height: 30px; padding: 0 14px; border-radius: 80px; background: {{ tw.bg }}; color: {{ tw.color }}; font-size: 12px; font-weight: {{ tw.fw }}; display: flex; align-items: center; justify-content: center; cursor: pointer; white-space: nowrap; box-shadow: {{ tw.shadow }}; transition: all 0.2s;">{{ tw.label }}</div>
+      </sc-for>
+    </div>
+  </sc-if>
+  <x-import component="IOSDevice" from="./ios-frame.jsx" style="order: -1" hint-size="402px,874px">
+    <div style="height: 100%; position: relative; overflow: hidden; font-family: -apple-system, 'PingFang SC', 'Noto Sans SC', system-ui, sans-serif; color: #2a1f24;">
+
+      <!-- ═══════════ 页面 0 · 美柚首页（起点） ═══════════ -->
+      <sc-if value="{{ isMeiyou }}" hint-placeholder-val="{{ true }}">
+        <div data-screen-label="美柚首页" style="position: absolute; inset: 0; background: #f2f2f5; display: flex; flex-direction: column;">
+          <div style="flex: 1; min-height: 0; position: relative;">
+            <div style="position: absolute; inset: 0; overflow-y: auto; padding-bottom: 12px;">
+
+              <div style="position: relative; background: #f896b5; padding-bottom: 14px;">
+                <div style="display: flex; align-items: center; justify-content: space-between; padding: 54px 12px 8px;">
+                  <div style="padding: 6px;">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3-3"></path></svg>
+                  </div>
+                  <div style="display: flex; align-items: center; justify-content: center; gap: 4px; flex: 1; font-size: 14px;">
+                    <span style="color: rgba(255,255,255,0.76); padding: 0 6px 4px; border-bottom: 2px solid transparent;">妈妈</span>
+                    <span style="color: #fff; font-weight: 500; padding: 0 6px 4px; border-bottom: 2px solid #fff;">胎宝宝</span>
+                    <span style="color: rgba(255,255,255,0.75); padding: 0 6px 4px; border-bottom: 2px solid transparent;">宝宝</span>
+                  </div>
+                  <div style="padding: 6px; position: relative;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+                    <span style="position: absolute; top: 2px; right: 2px; width: 11px; height: 11px; border-radius: 6px; background: #ff4d88; color: #fff; font-size: 8px; display: flex; align-items: center; justify-content: center; line-height: 1;">+</span>
+                  </div>
+                </div>
+                <div style="padding: 10px 14px 4px; display: flex; align-items: center; gap: 12px;">
+                  <div style="width: 54px; height: 54px; border-radius: 27px; background: #fff; border: 2px solid rgba(255,255,255,0.95); display: flex; align-items: center; justify-content: center; font-size: 26px; flex-shrink: 0;">🤲</div>
+                  <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px;">
+                    <span style="font-size: 17px; font-weight: 500; color: #fff; letter-spacing: 0.5px;">胎宝宝</span>
+                    <span style="font-size: 14px; color: rgba(255,255,255,0.95);">孕36周5天</span>
+                  </div>
+                  <div style="flex-shrink: 0; height: 30px; padding: 0 12px; border-radius: 80px; background: #ff4d88; color: #fff; font-size: 12px; font-weight: 500; display: inline-flex; align-items: center; gap: 4px; white-space: nowrap;"><span style="font-size: 11px;">👔</span>邀请准爸爸 ›</div>
+                </div>
+              </div>
+
+              <div style="margin: 12px 12px 0; background: #fff; border-radius: 12px; padding: 12px; display: flex; align-items: center; justify-content: space-between; gap: 10px;">
+                <span style="font-size: 13px; color: rgba(0,0,0,0.6); line-height: 1.4; flex: 1;">把散落的照片，拼成成长的样子</span>
+                <button onClick="{{ tapGuide }}" style="flex-shrink: 0; height: 28px; padding: 0 14px; border-radius: 80px; border: 1px solid #ff4d88; background: #fff; color: #ff4d88; font-size: 13px; font-weight: 500; cursor: pointer; white-space: nowrap; font-family: inherit;">立即查看</button>
+              </div>
+
+              <div style="margin: 16px 0 80px; padding-left: 20px; padding-right: 12px;">
+                <div style="position: relative; padding-left: 14px;">
+                  <div style="position: absolute; left: 0; top: 8px; bottom: -20px; width: 2px; background: rgba(0,0,0,0.08); border-radius: 1px;"></div>
+                  <div style="position: absolute; left: -3px; top: 6px; width: 8px; height: 8px; border-radius: 4px; background: #ff4d88; box-shadow: 0 0 0 2px #fff;"></div>
+                  <div style="font-size: 13px; font-weight: 500; color: rgba(0,0,0,0.8); margin-bottom: 8px;">今天　孕36周5天</div>
+
+                  <sc-if value="{{ ringVisible }}" hint-placeholder-val="{{ true }}">
+                    <div style="position: relative; background: #fff; border-radius: 12px; overflow: hidden; border: 0.5px solid rgba(139,115,85,0.12); box-shadow: 0 4px 18px rgba(80,35,48,0.08); padding: 14px; display: flex; align-items: center; gap: 12px;">
+                      <div onClick="{{ hideRing }}" style="position: absolute; top: 8px; right: 8px; width: 22px; height: 22px; color: rgba(0,0,0,0.6); font-size: 15px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 2;">✕</div>
+                      <div style="flex-shrink: 0; width: 76px; height: 76px; position: relative;">
+                        <svg width="76" height="76" viewBox="0 0 76 76" style="position: absolute; left: 0; top: 0; transform: rotate(-88deg); transform-origin: 50% 50%;">
+                          <circle cx="38" cy="38" r="34" fill="none" stroke="rgba(255,91,138,0.12)" stroke-width="4"></circle>
+                          <circle cx="38" cy="38" r="34" fill="none" stroke="#ff4d88" stroke-width="4" stroke-linecap="round" stroke-dasharray="47.5 213.6"></circle>
+                        </svg>
+                        <div style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 50px; height: 50px; border-radius: 50%; overflow: hidden; border: 0.5px solid rgba(255,255,255,0.9); box-shadow: 0 1px 4px rgba(80,40,50,0.08); box-sizing: border-box;">
+                          <div style="display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(3, 1fr); gap: 1px; width: 100%; height: 100%; background: #fff; box-sizing: border-box;">
+                            <sc-for list="{{ ringCells }}" as="rc" hint-placeholder-count="9">
+                              <div style="min-width: 0; min-height: 0; overflow: hidden; position: relative; background: #fff3f7;">
+                                <sc-if value="{{ rc.filled }}" hint-placeholder-val="{{ true }}">
+                                  <img src="{{ rc.src }}" alt="" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                                </sc-if>
+                                <sc-if value="{{ rc.empty }}" hint-placeholder-val="{{ false }}">
+                                  <div style="position: absolute; inset: 0; background: rgba(255,243,247,0.9); border: 0.5px dashed rgba(255,91,138,0.28); box-sizing: border-box;"></div>
+                                </sc-if>
+                              </div>
+                            </sc-for>
+                          </div>
+                        </div>
+                      </div>
+                      <div style="flex: 1; min-width: 0;">
+                        <div style="font-size: 14px; font-weight: 500; color: rgba(0,0,0,0.8); margin-bottom: 6px; line-height: 1.35;">豆豆的专属九宫格 · 已完成<span style="color: #ff4d88;">22%</span></div>
+                        <div style="font-size: 11px; color: rgba(0,0,0,0.6); line-height: 1.43; margin-bottom: 10px;">已完成 <span style="color: #ff4d88; font-weight: 500;">2/9</span> · 再填 7 格即可生成</div>
+                        <button onClick="{{ tapGuide }}" style="background: #fff5f9; padding: 6px 14px; border-radius: 80px; font-size: 12px; font-weight: 500; color: #ff4d88; cursor: pointer; letter-spacing: 0.2px; border: 0.5px solid rgba(255,91,138,0.18); font-family: inherit;">立即查看</button>
+                      </div>
+                    </div>
+                  </sc-if>
+
+                  <div style="margin-top: 14px; background: #fff; border-radius: 12px; padding: 14px 14px 12px; border: 0.5px solid rgba(0,0,0,0.08); box-shadow: 0 1px 6px rgba(0,0,0,0.04);">
+                    <div style="font-size: 15px; font-weight: 500; color: rgba(0,0,0,0.8); margin-bottom: 8px;">5月25日 · 宝宝又长大了一点点</div>
+                    <div style="font-size: 12px; color: rgba(0,0,0,0.6); line-height: 1.5;">
+                      <div>BPD · 93mm　头围 · 330mm</div>
+                      <div style="margin-top: 4px;">腹围 · 340mm　股骨长 · 70mm（占位）</div>
+                      <div style="margin-top: 10px; font-weight: 500; color: rgba(0,0,0,0.8);">估重 6.30 斤</div>
+                    </div>
+                    <div style="margin-top: 14px; padding-top: 10px; border-top: 0.5px solid rgba(0,0,0,0.08); font-size: 11px; color: rgba(0,0,0,0.6); display: flex; align-items: center; justify-content: space-between;">
+                      <span>占位 · 仅自己可见</span>
+                      <span style="opacity: 0.5;">❤ 💬</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <button style="position: absolute; right: 16px; bottom: 8px; z-index: 15; width: 54px; height: 54px; border-radius: 27px; border: none; background: #ff4d88; color: #fff; cursor: pointer; box-shadow: 0 6px 16px rgba(255,77,136,0.45); display: flex; align-items: center; justify-content: center; font-size: 24px;">
+              <span style="position: relative;">📷<span style="position: absolute; top: -6px; right: -8px; width: 14px; height: 14px; border-radius: 7px; background: #fff; color: #ff4d88; font-size: 11px; font-weight: 500; display: flex; align-items: center; justify-content: center;">+</span></span>
+            </button>
+          </div>
+
+          <div style="flex-shrink: 0; background: #fff; border-top: 0.5px solid rgba(0,0,0,0.08); padding: 6px 4px 26px; display: flex; justify-content: space-around; align-items: flex-end;">
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 4px 0;">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M12 3L4 8v12h6v-7h4v7h6V8l-8-5z" fill="#ff4d88"></path></svg>
+              <span style="font-size: 11px; color: #ff4d88; font-weight: 500;">美柚</span>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 4px 0;">
+              <div style="position: relative; width: 24px; height: 26px;">
+                <svg width="24" height="18" viewBox="0 0 24 24" fill="none" style="display: block;"><rect x="3" y="5" width="18" height="14" rx="2" stroke="rgba(0,0,0,0.35)" stroke-width="1.8"></rect><path d="M3 11h18" stroke="rgba(0,0,0,0.35)" stroke-width="1.8"></path></svg>
+                <span style="position: absolute; bottom: 0; left: 0; right: 0; font-size: 9px; font-weight: 500; color: rgba(0,0,0,0.35); text-align: center; line-height: 1;">26</span>
+              </div>
+              <span style="font-size: 11px; color: rgba(0,0,0,0.6);">记录</span>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 4px 0;">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8" stroke="rgba(0,0,0,0.35)" stroke-width="1.8"></circle><text x="12" y="15" text-anchor="middle" font-size="9" font-weight="500" fill="rgba(0,0,0,0.35)">¥</text></svg>
+              <span style="font-size: 11px; color: rgba(0,0,0,0.6);">返现</span>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 4px 0;">
+              <div style="position: relative;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M4 6h16v10H8l-4 3V6z" stroke="rgba(0,0,0,0.35)" stroke-width="1.8" stroke-linejoin="round"></path></svg>
+                <span style="position: absolute; top: -4px; right: -10px; min-width: 16px; height: 16px; padding: 0 4px; border-radius: 8px; background: #ff4d4d; color: #fff; font-size: 10px; font-weight: 500; display: flex; align-items: center; justify-content: center; box-sizing: border-box;">8</span>
+              </div>
+              <span style="font-size: 11px; color: rgba(0,0,0,0.6);">消息</span>
+            </div>
+            <div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 4px 0;">
+              <div style="position: relative;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="9" r="4" stroke="rgba(0,0,0,0.35)" stroke-width="1.8"></circle><path d="M5 21v-2a7 7 0 0114 0v2" stroke="rgba(0,0,0,0.35)" stroke-width="1.8" stroke-linecap="round"></path></svg>
+                <span style="position: absolute; top: -1px; right: -4px; width: 7px; height: 7px; border-radius: 4px; background: #ff4d4d;"></span>
+              </div>
+              <span style="font-size: 11px; color: rgba(0,0,0,0.6);">我</span>
+            </div>
+          </div>
+        </div>
+      </sc-if>
+
+      <!-- ═══════════ 页面 1 · 成长纪念卡入口页 ═══════════ -->
+      <sc-if value="{{ isHome }}" hint-placeholder-val="{{ false }}">
+        <div data-screen-label="入口首页" style="position: absolute; inset: 0; background: #fffaf6;">
+          <div style="position: absolute; inset: 0; overflow-y: auto; padding-bottom: 110px;">
+            <div style="display: flex; align-items: center; justify-content: space-between; padding: 56px 16px 4px;">
+              <div onClick="{{ goMeiyou }}" style="width: 32px; height: 32px; border-radius: 16px; background: rgba(255,255,255,0.85); box-shadow: 0 1px 4px rgba(80,30,40,0.08); display: flex; align-items: center; justify-content: center; cursor: pointer;">
+                <svg width="9" height="14" viewBox="0 0 10 16" fill="none"><path d="M8.5 1L1.5 8L8.5 15" stroke="#2a1f24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+              </div>
+              <div style="font-size: 16px; font-weight: 600;">成长纪念卡</div>
+              <div onClick="{{ openWorks }}" style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; cursor: pointer;">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="1" y="1" width="7" height="7" rx="1.5" stroke="#2a1f24" stroke-width="1.5"></rect><rect x="10" y="1" width="7" height="7" rx="1.5" stroke="#2a1f24" stroke-width="1.5"></rect><rect x="1" y="10" width="7" height="7" rx="1.5" stroke="#2a1f24" stroke-width="1.5"></rect><rect x="10" y="10" width="7" height="7" rx="1.5" stroke="#2a1f24" stroke-width="1.5"></rect></svg>
+              </div>
+            </div>
+
+            <div style="display: flex; justify-content: center; margin-top: 12px;">
+              <div style="display: inline-flex; align-items: center; gap: 6px; padding: 7px 14px; border-radius: 80px; background: #fff; border: 0.5px solid rgba(255,77,136,0.18); box-shadow: 0 6px 20px rgba(255,115,148,0.08);">
+                <span style="width: 6px; height: 6px; border-radius: 3px; background: #ff5b8a;"></span>
+                <span style="font-size: 11.5px; color: #2a1f24;"><span style="color: #ff5b8a; font-weight: 600;">{{ countText }}</span> 位妈妈已经为宝宝生成了成长纪念卡</span>
+              </div>
+            </div>
+
+            <h1 style="margin: 16px 16px 4px; text-align: center; font-family: 'Noto Serif SC', 'Songti SC', serif; font-size: 26px; font-weight: 700; letter-spacing: 1px; line-height: 1.4;">这 280 天，<span style="color: #ff5b8a;">值得</span>好好珍藏</h1>
+
+            <div style="position: relative; height: 318px; margin-top: 12px;">
+              <sc-for list="{{ heroCards }}" as="card" hint-placeholder-count="3">
+                <div onClick="{{ card.onTap }}" style="position: absolute; left: 50%; top: 8px; width: 184px; height: 280px; margin-left: -92px; transform: translateX({{ card.dx }}px) rotate({{ card.rot }}deg) scale({{ card.scale }}); transition: transform 0.6s cubic-bezier(.2,.8,.2,1), opacity 0.6s; z-index: {{ card.z }}; opacity: {{ card.op }}; cursor: pointer; border-radius: 6px; background: #fff; padding: 7px 7px 36px; box-sizing: border-box; box-shadow: {{ card.shadow }};">
+                  <div style="width: 100%; height: 100%; border-radius: 3px; overflow: hidden; background: #f3ebe4; position: relative;">
+                    <sc-if value="{{ card.notDemo }}" hint-placeholder-val="{{ true }}">
+                      <img src="{{ card.src }}" alt="" style="width: 100%; height: 180%; object-fit: cover; object-position: center 40%; margin-top: -40%; display: block;">
+                    </sc-if>
+                    <sc-if value="{{ card.isDemo }}" hint-placeholder-val="{{ false }}">
+                      <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: #f7f1ea;">
+                        <div style="display: grid; grid-template-columns: repeat(3, 50px); grid-template-rows: repeat(3, 72px); gap: 4px;">
+                          <sc-for list="{{ nineThumbs }}" as="ph" hint-placeholder-count="9">
+                            <div style="border-radius: 3px; border: 1px solid #fff; background: #f3ebe4; overflow: hidden; box-shadow: 0 1px 2px rgba(80,30,40,0.10);">
+                              <img src="{{ ph.src }}" alt="" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                            </div>
+                          </sc-for>
+                        </div>
+                      </div>
+                    </sc-if>
+                  </div>
+                  <div style="position: absolute; bottom: 7px; left: 0; right: 0; text-align: center; font-size: 11px; color: #5b4a52; font-family: 'Noto Serif SC', serif; letter-spacing: 0.4px; line-height: 1.6; padding: 0 8px;">{{ card.tag }}</div>
+                </div>
+              </sc-for>
+            </div>
+
+            <div style="display: flex; justify-content: center; gap: 5px; margin-top: 2px;">
+              <sc-for list="{{ heroDots }}" as="dot" hint-placeholder-count="7">
+                <span style="display: block; width: {{ dot.w }}px; height: 5px; border-radius: 3px; background: {{ dot.bg }}; transition: all 0.3s;"></span>
+              </sc-for>
+            </div>
+
+            <div style="margin: 22px 16px 0; padding: 16px; background: #fff; border-radius: 12px; border: 0.5px solid #f0e2d8; box-shadow: 0 4px 16px rgba(80,35,48,0.05);">
+              <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 10px;">
+                <div style="font-size: 15px; font-weight: 600; line-height: 1.45;">豆豆的专属成长纪念卡<br>已经准备好了</div>
+                <div style="display: inline-flex; align-items: center; gap: 4px; padding: 3px 8px; border-radius: 80px; background: rgba(80,180,120,0.08); flex-shrink: 0;">
+                  <span style="width: 5px; height: 5px; border-radius: 3px; background: #3aa86c;"></span>
+                  <span style="font-size: 10px; color: #3aa86c; font-weight: 500;">已就绪</span>
+                </div>
+              </div>
+              <div style="margin-top: 4px; font-size: 12px; color: #9c8e94;">一份有意义的礼物，送给宝宝也送给自己</div>
+              <div style="margin-top: 12px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                <sc-for list="{{ sellPoints }}" as="pt" hint-placeholder-count="4">
+                  <div style="display: flex; align-items: center; gap: 7px; padding: 8px 10px; background: #fffaf6; border-radius: 8px;">
+                    <span style="width: 16px; height: 16px; border-radius: 8px; background: #ffe4d8; color: #ff5b8a; font-size: 10px; display: flex; align-items: center; justify-content: center; font-weight: 700;">✓</span>
+                    <span style="font-size: 12px; color: #5b4a52; font-weight: 500;">{{ pt.label }}</span>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </div>
+
+          <div style="position: absolute; left: 0; right: 0; bottom: 0; padding: 14px 16px 34px; background: linear-gradient(to top, #fffaf6 70%, rgba(255,250,246,0));">
+            <button onClick="{{ goTpl }}" style="width: 100%; height: 52px; border-radius: 26px; border: 0; background: linear-gradient(135deg, #ff6e9c 0%, #ff5b8a 100%); color: #fff; font-size: 16px; font-weight: 700; letter-spacing: 1px; cursor: pointer; box-shadow: 0 8px 18px -6px rgba(255,91,138,0.55); font-family: inherit;">给豆豆做同款</button>
+          </div>
+        </div>
+      </sc-if>
+
+      <!-- ═══════════ 页面 2 · 选择模板页 ═══════════ -->
+      <sc-if value="{{ isTpl }}" hint-placeholder-val="{{ false }}">
+        <div data-screen-label="选择模板页" style="position: absolute; inset: 0; background: #fffaf6; display: flex; flex-direction: column;">
+          <div style="flex-shrink: 0; display: flex; align-items: center; justify-content: space-between; padding: 56px 16px 6px;">
+            <div onClick="{{ backHome }}" style="width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; cursor: pointer;">
+              <svg width="9" height="14" viewBox="0 0 10 16" fill="none"><path d="M8.5 1L1.5 8L8.5 15" stroke="#2a1f24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+            </div>
+            <div style="font-size: 16px; font-weight: 600;">选择模板</div>
+            <div style="width: 36px;"></div>
+          </div>
+
+          <div style="flex: 1; min-height: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 8px 16px;">
+            <div onClick="{{ toFill }}" style="position: relative; width: 226px; border-radius: 4px; padding: 9px; box-sizing: border-box; cursor: pointer; background: {{ selFrameBg }}; border: 1.5px solid {{ selBorder }}; box-shadow: inset 0 0 0 5px #fff, inset 0 0 0 6px {{ selInner }}, {{ selShadow }}; transition: all 0.35s cubic-bezier(.4,0,.2,1);">
+              <div style="display: grid; grid-template-columns: {{ selCols }}; gap: 4px;">
+                <sc-for list="{{ previewCells }}" as="cell" hint-placeholder-count="9">
+                  <div style="display: flex; flex-direction: column; min-width: 0; overflow: hidden; border-radius: 2px; background: #fff;">
+                    <div style="aspect-ratio: 1; overflow: hidden; background: #f0e8e2;">
+                      <img src="{{ cell.src }}" alt="" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                    </div>
+                    <sc-if value="{{ cell.showCap }}" hint-placeholder-val="{{ false }}">
+                      <div style="flex-shrink: 0; font-family: 'Noto Serif SC', serif; font-style: italic; font-size: 7px; color: #5b4a52; text-align: center; padding: 2px 1px; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ cell.cap }}</div>
+                    </sc-if>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+            <div style="margin-top: 12px; font-family: 'Noto Serif SC', serif; font-size: 15px; font-weight: 600; letter-spacing: 0.5px;">{{ selName }}</div>
+            <div style="margin-top: 3px; font-size: 11px; color: #9c8e94;">{{ selSub }}</div>
+          </div>
+
+          <div style="flex-shrink: 0; display: flex; border-bottom: 0.5px solid #f0e2d8; padding: 0 8px;">
+            <sc-for list="{{ tabs }}" as="tb" hint-placeholder-count="2">
+              <div onClick="{{ tb.onTap }}" style="flex: 1; text-align: center; padding: 10px 0 9px; cursor: pointer; font-size: 14px; font-weight: {{ tb.fw }}; color: {{ tb.color }}; border-bottom: 2px solid {{ tb.line }};">{{ tb.name }}</div>
+            </sc-for>
+          </div>
+
+          <div style="flex-shrink: 0; padding: 12px 30px 8px;">
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px;">
+              <sc-for list="{{ templates }}" as="tp" hint-placeholder-count="2">
+                <div onClick="{{ tp.onTap }}" style="position: relative; cursor: pointer;">
+                  <div style="position: relative; aspect-ratio: 3/4; border-radius: 6px; background: {{ tp.thumbBg }}; border: 1.5px solid {{ tp.ring }}; box-shadow: {{ tp.glow }}; display: flex; align-items: center; justify-content: center; padding: 7px; box-sizing: border-box;">
+                    <div style="width: 100%; background: {{ tp.frameBg }}; border: 1px solid {{ tp.border }}; border-radius: 3px; padding: 3px; box-sizing: border-box; box-shadow: inset 0 0 0 1.5px #fff;">
+                      <div style="display: grid; grid-template-columns: {{ tp.cols }}; gap: 2px;">
+                        <sc-for list="{{ tp.cellPhotos }}" as="cp" hint-placeholder-count="4">
+                          <div style="display: flex; flex-direction: column; border-radius: 1px; overflow: hidden; background: #fff;">
+                            <div style="aspect-ratio: 1; overflow: hidden;"><img src="{{ cp.src }}" alt="" style="width: 100%; height: 100%; object-fit: cover; display: block;"></div>
+                            <div style="height: {{ tp.capH }}px; background: #fff;"></div>
+                          </div>
+                        </sc-for>
+                      </div>
+                    </div>
+                  </div>
+                  <div style="margin-top: 4px; text-align: center; font-size: 9.5px; color: {{ tp.nameColor }}; line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ tp.name }}</div>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+
+          <div style="flex-shrink: 0; padding: 8px 16px 34px;">
+            <button onClick="{{ toFill }}" style="width: 100%; height: 50px; border-radius: 26px; border: 0; background: linear-gradient(135deg, #ff6e9c 0%, #ff5b8a 100%); color: #fff; font-size: 15px; font-weight: 700; letter-spacing: 1px; cursor: pointer; box-shadow: 0 8px 18px -6px rgba(255,91,138,0.5); font-family: inherit;">下一步</button>
+          </div>
+        </div>
+      </sc-if>
+
+      <!-- ═══════════ 页面 3 · 照片填充态 ═══════════ -->
+      <sc-if value="{{ isFill }}" hint-placeholder-val="{{ false }}">
+        <div data-screen-label="照片填充页" style="position: absolute; inset: 0; background: #fff8f4; display: flex; flex-direction: column;">
+          <div style="flex-shrink: 0; display: flex; align-items: center; justify-content: space-between; padding: 56px 16px 6px;">
+            <div onClick="{{ backTpl }}" style="display: flex; align-items: center; gap: 5px; cursor: pointer;">
+              <svg width="9" height="14" viewBox="0 0 10 16" fill="none"><path d="M8.5 1L1.5 8L8.5 15" stroke="#2a1f24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+              <span style="font-size: 13px; color: #5b4a52;">返回</span>
+            </div>
+            <div style="font-size: 16px; font-weight: 600;">替换照片</div>
+            <div style="width: 30px;"></div>
+          </div>
+
+          <div style="flex: 1; min-height: 0; overflow-y: auto; padding: 10px 18px 8px;">
+            <div style="position: relative; border-radius: 4px; padding: 10px 10px 12px; box-sizing: border-box; background: {{ selFrameBg }}; border: 1.5px solid {{ selBorder }}; box-shadow: inset 0 0 0 5px #fff, inset 0 0 0 6px {{ selInner }}, {{ selShadow }};">
+              <div style="display: grid; grid-template-columns: {{ selCols }}; gap: 5px;">
+                <sc-for list="{{ slotCells }}" as="sl" hint-placeholder-count="9">
+                  <div onClick="{{ sl.onBody }}" style="display: flex; flex-direction: column; min-width: 0; overflow: hidden; border-radius: 2px; background: #fff; cursor: pointer;">
+                    <div style="position: relative; aspect-ratio: 1; overflow: hidden; background: #f7f1ea;">
+                      <sc-if value="{{ sl.filled }}" hint-placeholder-val="{{ true }}">
+                        <img src="{{ sl.src }}" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block;">
+                        <div style="position: absolute; left: 0; right: 0; bottom: 0; height: 30px; background: linear-gradient(to top, rgba(0,0,0,0.42), rgba(0,0,0,0)); display: flex; align-items: flex-end; justify-content: center; padding-bottom: 4px;">
+                          <span onClick="{{ sl.onPill }}" style="padding: 2px 8px; border-radius: 80px; background: rgba(255,255,255,0.85); font-size: 8.5px; color: #2a1f24; font-weight: 500;">替换照片</span>
+                        </div>
+                      </sc-if>
+                      <sc-if value="{{ sl.empty }}" hint-placeholder-val="{{ false }}">
+                        <img src="{{ sl.backdrop }}" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; opacity: 0.32;">
+                        <div style="position: absolute; inset: 0; background: rgba(255,248,244,0.60);"></div>
+                        <div style="position: absolute; inset: 2px; border: 1px dashed rgba(255,91,138,0.4); border-radius: 2px;"></div>
+                        <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;">
+                          <span onClick="{{ sl.onPill }}" style="padding: 3px 9px; border-radius: 80px; background: rgba(255,255,255,0.95); box-shadow: 0 1px 6px rgba(80,30,40,0.15); font-size: 8.5px; color: #ff5b8a; font-weight: 600;">替换照片</span>
+                        </div>
+                      </sc-if>
+                    </div>
+                    <sc-if value="{{ sl.showCap }}" hint-placeholder-val="{{ false }}">
+                      <div style="flex-shrink: 0; height: 20px; display: flex; align-items: center; justify-content: center; background: #fffaf6; border-top: 0.5px solid rgba(139,115,85,0.18);">
+                        <span style="font-family: 'Noto Serif SC', serif; font-style: italic; font-size: 9px; font-weight: 500; color: {{ sl.capColor }}; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ sl.cap }}</span>
+                      </div>
+                    </sc-if>
+                  </div>
+                </sc-for>
+              </div>
+              <div style="margin-top: 10px; text-align: center;">
+                <div style="font-family: 'Noto Serif SC', serif; font-size: 17px; font-weight: 600; letter-spacing: 6px; color: #2a1f24;">豆 豆</div>
+                <div style="margin-top: 3px; font-size: 8px; letter-spacing: 1px; color: #8b7355;">BIRTHDAY 2026.06.28 · WEIGHT 3.2KG · HEIGHT 50CM</div>
+              </div>
+              <div style="position: absolute; right: 12px; bottom: 8px; font-size: 8px; color: rgba(255,91,138,0.65);">美柚 · 成长纪念卡</div>
+            </div>
+
+            <sc-if value="{{ hasMissing }}" hint-placeholder-val="{{ false }}">
+              <div style="margin-top: 12px; padding: 12px 14px; background: #fff; border-radius: 12px; border: 0.5px solid #f0e2d8; display: flex; align-items: center; gap: 12px;">
+                <div style="width: 34px; height: 34px; border-radius: 17px; background: #fff5e1; display: flex; align-items: center; justify-content: center; font-size: 16px;">⚠️</div>
+                <div>
+                  <div style="font-size: 13px; font-weight: 700; color: #d98326;">还有 {{ missingCount }} 格未填充</div>
+                  <div style="font-size: 11px; color: #5b4a52; margin-top: 2px;">点击空格子可快捷填入，或点「替换照片」自选</div>
+                </div>
+              </div>
+            </sc-if>
+            <div style="text-align: center; margin-top: 10px; font-size: 11px; color: #9c8e94;">点击任意格子可替换照片</div>
+          </div>
+
+          <div style="flex-shrink: 0; padding: 10px 16px 34px; background: linear-gradient(to top, #fff8f4 70%, rgba(255,248,244,0));">
+            <button onClick="{{ toDone }}" style="width: 100%; height: 50px; border-radius: 26px; border: 0; background: linear-gradient(135deg, #ff6e9c 0%, #ff5b8a 100%); color: #fff; font-size: 15px; font-weight: 700; letter-spacing: 1px; cursor: pointer; box-shadow: 0 8px 18px -6px rgba(255,91,138,0.5); font-family: inherit;">完成，生成纪念卡</button>
+          </div>
+
+          <sc-if value="{{ sheetOpen }}" hint-placeholder-val="{{ false }}">
+            <div onClick="{{ closeSheet }}" style="position: absolute; inset: 0; background: rgba(0,0,0,0.35); z-index: 30; animation: fadeIn 0.25s;"></div>
+            <div style="position: absolute; left: 0; right: 0; bottom: 0; z-index: 31; background: #fff; border-radius: 16px 16px 0 0; animation: sheetUp 0.32s cubic-bezier(.4,0,.2,1); padding-bottom: 30px;">
+              <div style="display: flex; justify-content: center; padding-top: 8px;"><div style="width: 36px; height: 4px; border-radius: 2px; background: #e8ddd5;"></div></div>
+              <div style="display: flex; align-items: flex-start; justify-content: space-between; padding: 10px 16px 0;">
+                <div>
+                  <div style="font-size: 16px; font-weight: 700;">换一张</div>
+                  <div style="font-size: 11px; color: #9c8e94; margin-top: 2px;">从你已上传的孕期照片中选择</div>
+                </div>
+                <div onClick="{{ closeSheet }}" style="width: 28px; height: 28px; border-radius: 14px; background: #f5efe9; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 13px; color: #9c8e94;">✕</div>
+              </div>
+              <div style="padding: 12px 16px 0;">
+                <button onClick="{{ closeSheet }}" style="width: 100%; height: 44px; border-radius: 10px; border: 0; background: #ff5b8a; color: #fff; font-size: 14px; font-weight: 600; cursor: pointer; font-family: inherit;">📷 从相册上传新照片</button>
+              </div>
+              <div style="margin: 14px 16px 0; border-top: 0.5px solid #f0e2d8;"></div>
+              <div style="padding: 10px 16px 6px; font-size: 12px; color: #9c8e94; font-weight: 500;">已上传的照片</div>
+              <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; padding: 0 16px;">
+                <sc-for list="{{ sheetPhotos }}" as="sp" hint-placeholder-count="7">
+                  <div onClick="{{ sp.onTap }}" style="position: relative; aspect-ratio: 1; border-radius: 6px; overflow: hidden; cursor: pointer; box-shadow: {{ sp.ring }};">
+                    <img src="{{ sp.src }}" alt="" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                    <sc-if value="{{ sp.sel }}" hint-placeholder-val="{{ false }}">
+                      <div style="position: absolute; top: 4px; right: 4px; width: 16px; height: 16px; border-radius: 8px; background: #ff5b8a; color: #fff; font-size: 9px; display: flex; align-items: center; justify-content: center;">✓</div>
+                    </sc-if>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </sc-if>
+        </div>
+      </sc-if>
+
+      <!-- ═══════════ 页面 P · 推送落地 · 圆环进度编辑页 ═══════════ -->
+      <sc-if value="{{ isPush }}" hint-placeholder-val="{{ false }}">
+        <div data-screen-label="圆环进度编辑页" style="position: absolute; inset: 0; background: #fff8f4; display: flex; flex-direction: column;">
+          <div style="flex-shrink: 0; display: flex; align-items: center; justify-content: space-between; padding: 52px 16px 10px;">
+            <div onClick="{{ goMeiyou }}" style="display: flex; align-items: center; gap: 6px; cursor: pointer; height: 36px;">
+              <svg width="10" height="16" viewBox="0 0 10 16" fill="none"><path d="M8.5 1L1.5 8L8.5 15" stroke="#2a1f24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+              <span style="font-size: 13px; color: #5b4a52;">返回</span>
+            </div>
+            <div style="font-size: 16px; font-weight: 600;">替换照片</div>
+            <div onClick="{{ openWorks }}" style="width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; cursor: pointer;">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="1" y="1" width="7" height="7" rx="1.5" stroke="#2a1f24" stroke-width="1.5"></rect><rect x="10" y="1" width="7" height="7" rx="1.5" stroke="#2a1f24" stroke-width="1.5"></rect><rect x="1" y="10" width="7" height="7" rx="1.5" stroke="#2a1f24" stroke-width="1.5"></rect><rect x="10" y="10" width="7" height="7" rx="1.5" stroke="#2a1f24" stroke-width="1.5"></rect></svg>
+            </div>
+          </div>
+
+          <div style="flex: 1; min-height: 0; overflow-y: auto; background: radial-gradient(ellipse at 50% 0%, #fff0f4 0%, #fffaf6 60%, #fdf6ef 100%); padding: 14px 14px 10px;">
+
+            <sc-if value="{{ pushComplete }}" hint-placeholder-val="{{ false }}">
+              <div style="border-radius: 12px; background: linear-gradient(128deg, #fff9fc 0%, #fff3f8 38%, #fffaf4 72%, #fffefb 100%); border: 0.5px solid rgba(255,77,136,0.10); box-shadow: 0 4px 18px rgba(80,35,48,0.08); margin-bottom: 12px; padding: 16px 14px 15px; display: flex; align-items: center; gap: 14px; position: relative; overflow: hidden;">
+                <span style="position: absolute; top: 10px; right: 14px; font-size: 11px; color: rgba(255,77,136,0.22); line-height: 1;">✦</span>
+                <span style="position: absolute; bottom: 12px; right: 42px; font-size: 8px; color: rgba(255,180,100,0.35); line-height: 1;">✦</span>
+                <div style="flex-shrink: 0; width: 82px; height: 82px; position: relative;">
+                  <div style="position: absolute; inset: 2px; border-radius: 50%; background: radial-gradient(circle, rgba(255,77,136,0.14) 0%, transparent 68%); pointer-events: none;"></div>
+                  <svg width="82" height="82" viewBox="0 0 82 82" style="position: absolute; left: 0; top: 0;">
+                    <defs>
+                      <linearGradient id="pushRingCompleteGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#ff6e9c"></stop>
+                        <stop offset="55%" stop-color="#ff4d88"></stop>
+                        <stop offset="100%" stop-color="#ffb86c"></stop>
+                      </linearGradient>
+                    </defs>
+                    <circle cx="41" cy="41" r="36" fill="none" stroke="rgba(255,77,136,0.1)" stroke-width="3.5"></circle>
+                    <circle cx="41" cy="41" r="36" fill="none" stroke="url(#pushRingCompleteGrad)" stroke-width="3.5" stroke-linecap="round"></circle>
+                  </svg>
+                  <div style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 52px; height: 52px; border-radius: 50%; overflow: hidden; border: 1.5px solid rgba(255,255,255,0.95); box-shadow: 0 0 0 1px rgba(255,77,136,0.12), 0 4px 14px rgba(255,77,136,0.14); box-sizing: border-box;">
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(3, 1fr); gap: 1px; width: 100%; height: 100%; background: #fff; box-sizing: border-box;">
+                      <sc-for list="{{ pushRingCells }}" as="prcc" hint-placeholder-count="9">
+                        <div style="min-width: 0; min-height: 0; overflow: hidden; background: #fff3f7;">
+                          <img src="{{ prcc.src }}" alt="" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                        </div>
+                      </sc-for>
+                    </div>
+                  </div>
+                  <div style="position: absolute; right: 4px; bottom: 6px; width: 18px; height: 18px; border-radius: 9px; background: linear-gradient(135deg, #ff6e9c 0%, #ff4d88 100%); border: 1.5px solid #fff; box-shadow: 0 2px 6px rgba(255,77,136,0.35); display: flex; align-items: center; justify-content: center; font-size: 9px; color: #fff; line-height: 1;">✓</div>
+                </div>
+                <div style="flex: 1; min-width: 0; padding-right: 4px;">
+                  <div style="display: inline-flex; align-items: center; gap: 4px; padding: 3px 10px; border-radius: 80px; background: rgba(255,77,136,0.08); border: 0.5px solid rgba(255,77,136,0.14); margin-bottom: 8px; white-space: nowrap; flex-shrink: 0;">
+                    <span style="font-size: 11px; line-height: 1;">🎉</span>
+                    <span style="font-size: 11px; font-weight: 500; color: #ff4d88; letter-spacing: 0.3px;">圆满达成</span>
+                  </div>
+                  <div style="font-size: 14px; font-weight: 500; color: rgba(0,0,0,0.8); line-height: 1.35;">恭喜，豆豆的九宫格已拼满</div>
+                </div>
+              </div>
+            </sc-if>
+            <sc-if value="{{ pushNotComplete }}" hint-placeholder-val="{{ true }}">
+              <div style="border-radius: 12px; background: #fff; border: 0.5px solid rgba(139,115,85,0.12); box-shadow: 0 4px 18px rgba(80,35,48,0.08); margin-bottom: 12px; padding: 14px; display: flex; align-items: center; gap: 12px;">
+                <div style="flex-shrink: 0; width: 76px; height: 76px; position: relative;">
+                  <svg width="76" height="76" viewBox="0 0 76 76" style="position: absolute; left: 0; top: 0; transform: rotate(-88deg); transform-origin: 50% 50%;">
+                    <circle cx="38" cy="38" r="34" fill="none" stroke="rgba(255,91,138,0.12)" stroke-width="4"></circle>
+                    <circle cx="38" cy="38" r="34" fill="none" stroke="#ff4d88" stroke-width="4" stroke-linecap="round" stroke-dasharray="{{ pushRingDash }}" style="transition: stroke-dasharray 0.5s cubic-bezier(.4,0,.2,1);"></circle>
+                  </svg>
+                  <div style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 50px; height: 50px; border-radius: 50%; overflow: hidden; border: 0.5px solid rgba(255,255,255,0.9); box-shadow: 0 1px 4px rgba(80,40,50,0.08); box-sizing: border-box;">
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(3, 1fr); gap: 1px; width: 100%; height: 100%; background: #fff; box-sizing: border-box;">
+                      <sc-for list="{{ pushRingCells }}" as="prc" hint-placeholder-count="9">
+                        <div style="min-width: 0; min-height: 0; overflow: hidden; position: relative; background: #fff3f7;">
+                          <sc-if value="{{ prc.filled }}" hint-placeholder-val="{{ true }}">
+                            <img src="{{ prc.src }}" alt="" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                          </sc-if>
+                          <sc-if value="{{ prc.empty }}" hint-placeholder-val="{{ false }}">
+                            <div style="position: absolute; inset: 0; background: rgba(255,243,247,0.9); border: 0.5px dashed rgba(255,91,138,0.28); box-sizing: border-box;"></div>
+                          </sc-if>
+                        </div>
+                      </sc-for>
+                    </div>
+                  </div>
+                </div>
+                <div style="flex: 1; min-width: 0;">
+                  <div style="font-size: 14px; font-weight: 500; color: rgba(0,0,0,0.8); margin-bottom: 6px; line-height: 1.35;">豆豆的专属九宫格 · 已完成<span style="color: #ff4d88;">{{ pushRingPct }}%</span></div>
+                  <div style="font-size: 11px; color: rgba(0,0,0,0.6); line-height: 1.43; margin-bottom: 10px;">{{ pushRingSub }}</div>
+                  <button onClick="{{ openPreview }}" style="padding: 6px 14px; border-radius: 80px; border: 0.5px solid rgba(255,91,138,0.18); background: #fff5f9; color: #ff4d88; font-size: 12px; font-weight: 500; cursor: pointer; letter-spacing: 0.2px; font-family: inherit; white-space: nowrap;">成品预览</button>
+                </div>
+              </div>
+            </sc-if>
+
+            <!-- 模板切换：格数 -->
+            <div style="display: flex; gap: 0; margin-bottom: 14px; border-radius: 10px; overflow: hidden; border: 1px solid rgba(0,0,0,0.07);">
+              <sc-for list="{{ gridTabs }}" as="gt" hint-placeholder-count="2">
+                <div onClick="{{ gt.onTap }}" style="flex: 1; height: 36px; background: {{ gt.bg }}; display: flex; align-items: center; justify-content: center; cursor: pointer; border-right: {{ gt.divider }}; transition: background 0.2s;">
+                  <span style="font-size: 13px; font-weight: {{ gt.fw }}; color: {{ gt.color }}; letter-spacing: 0.2px; white-space: nowrap;">{{ gt.label }}</span>
+                </div>
+              </sc-for>
+            </div>
+
+            <div style="border-radius: 4px; overflow: hidden; background: {{ pushFrameBg }}; border: 1.5px solid {{ pushBorder }}; box-shadow: inset 0 0 0 5px #fff, inset 0 0 0 6px {{ pushInner }}, {{ pushShadow }}; display: flex; flex-direction: column; transition: background 0.3s;">
+              <div style="display: grid; grid-template-columns: {{ pushCols }}; gap: 5px; padding: 10px 10px 0;">
+                <sc-for list="{{ pushCells }}" as="pc" hint-placeholder-count="9">
+                  <div style="display: flex; flex-direction: column; min-width: 0; overflow: hidden; border-radius: 2px; background: #fff;">
+                    <div onClick="{{ pc.onBody }}" style="position: relative; aspect-ratio: 1; overflow: hidden; background: #faf8f5; border-radius: 2px; cursor: {{ pc.cursor }};">
+                      <sc-if value="{{ pc.isPhoto }}" hint-placeholder-val="{{ true }}">
+                        <img src="{{ pc.src }}" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block;">
+                        <span onClick="{{ pc.onPill }}" style="position: absolute; bottom: 5px; left: 50%; transform: translateX(-50%); padding: 3px 10px; border-radius: 20px; white-space: nowrap; background: rgba(255,255,255,0.95); border: 0.5px solid rgba(0,0,0,0.10); font-size: 8.5px; color: #5b4a52; box-shadow: 0 1px 3px rgba(0,0,0,0.08);">替换照片</span>
+                      </sc-if>
+                      <sc-if value="{{ pc.isPlus }}" hint-placeholder-val="{{ false }}">
+                        <img src="{{ pc.bgSrc }}" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; opacity: 0.46; filter: grayscale(0.18) blur(0.35px);">
+                        <div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(255,252,249,0.62) 0%, rgba(255,248,244,0.78) 100%);"></div>
+                        <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;">
+                          <span style="width: 36px; height: 36px; border-radius: 18px; border: 1.5px dashed #ff5b8a; display: flex; align-items: center; justify-content: center; font-size: 24px; color: #ff5b8a; line-height: 1; background: rgba(255,255,255,0.88); box-shadow: 0 2px 10px rgba(80,40,50,0.12);">＋</span>
+                        </div>
+                      </sc-if>
+                      <sc-if value="{{ pc.isLock }}" hint-placeholder-val="{{ false }}">
+                        <div style="position: absolute; inset: 0; background: #e9dfd0; border-radius: 2px; overflow: hidden;">
+                          <img src="{{ pc.bgSrc }}" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; opacity: 0.32; filter: grayscale(0.42) blur(0.4px);">
+                          <div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(253,245,232,0.53) 0%, rgba(253,245,232,0.88) 100%);"></div>
+                          <div style="position: absolute; inset: 0; padding: 6px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
+                            <div style="font-family: 'Noto Serif SC', serif; font-style: italic; font-weight: 500; font-size: 12px; color: #b89f76; letter-spacing: -0.4px; line-height: 1;">{{ pc.lockW }}<span style="font-size: 7.8px; margin-left: 1px;">周</span></div>
+                            <div style="margin-top: 5px; font-family: 'Noto Serif SC', serif; font-style: italic; font-size: 8.2px; color: #2b2620; line-height: 1.25;">{{ pc.lockTip }}</div>
+                          </div>
+                          <div style="position: absolute; top: 5px; right: 5px; font-family: 'IBM Plex Mono', 'SF Mono', ui-monospace, Menlo, monospace; font-size: 7.2px; color: #a89e8b; letter-spacing: 0.4px; line-height: 1;">{{ pc.lockDate }}</div>
+                        </div>
+                      </sc-if>
+                      <sc-if value="{{ pc.isBirth }}" hint-placeholder-val="{{ false }}">
+                        <div style="position: absolute; inset: 0; border-radius: 2px; overflow: hidden; background: #e9dfd0; border: 1px solid #e8c98a; box-shadow: 0 0 0 1px rgba(232,201,138,0.33);">
+                          <img src="{{ pc.bgSrc }}" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; opacity: 0.28; filter: sepia(0.5) blur(0.35px);">
+                          <div style="position: absolute; inset: 0; background: radial-gradient(circle at 50% 40%, rgba(232,201,138,0.62) 0%, rgba(253,246,227,0.86) 60%, rgba(240,226,187,0.92) 100%);"></div>
+                          <svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice" style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none;">
+                            <g stroke="#b89f76" stroke-width="0.4" stroke-linecap="round" opacity="0.5">
+                              <line x1="68" y1="50" x2="92" y2="50"></line><line x1="65.6" y1="59" x2="86.4" y2="71"></line><line x1="59" y1="65.6" x2="71" y2="86.4"></line><line x1="50" y1="68" x2="50" y2="92"></line><line x1="41" y1="65.6" x2="29" y2="86.4"></line><line x1="34.4" y1="59" x2="13.6" y2="71"></line><line x1="32" y1="50" x2="8" y2="50"></line><line x1="34.4" y1="41" x2="13.6" y2="29"></line><line x1="41" y1="34.4" x2="29" y2="13.6"></line><line x1="50" y1="32" x2="50" y2="8"></line><line x1="59" y1="34.4" x2="71" y2="13.6"></line><line x1="65.6" y1="41" x2="86.4" y2="29"></line>
+                            </g>
+                          </svg>
+                          <div style="position: absolute; inset: 0; padding: 6px; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                            <svg width="18" height="18" viewBox="0 0 16 16"><path d="M8 0 L9.2 6.8 L16 8 L9.2 9.2 L8 16 L6.8 9.2 L0 8 L6.8 6.8 Z" fill="#8a6f3e"></path></svg>
+                            <div style="margin-top: 5px; font-family: 'Noto Serif SC', serif; font-style: italic; font-weight: 500; font-size: 10px; color: #8a6f3e; line-height: 1.22; letter-spacing: 0.75px;">你出生那刻</div>
+                            <div style="margin-top: 3px; font-family: 'IBM Plex Mono', 'SF Mono', ui-monospace, Menlo, monospace; font-size: 7.5px; color: #b89f76; letter-spacing: 0.6px;">{{ pc.lockDate }}</div>
+                          </div>
+                        </div>
+                      </sc-if>
+                    </div>
+                    <div style="flex-shrink: 0; display: flex; align-items: center; justify-content: center; background: #fffaf6; padding: 3px 4px; border-top: 0.5px solid rgba(139,115,85,0.18);">
+                      <span style="font-family: 'Noto Serif SC', serif; font-style: {{ pc.capStyle }}; font-weight: {{ pc.capW }}; font-size: 10px; color: {{ pc.capColor }}; line-height: 1.25; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ pc.cap }}</span>
+                    </div>
+                  </div>
+                </sc-for>
+              </div>
+              <div style="padding: 12px 16px 14px; text-align: center; border-top: 1px solid rgba(139,115,85,0.22); background: {{ pushFrameBg }}; margin-top: 10px;">
+                <div style="font-family: 'Noto Serif SC', serif; font-size: 17px; font-weight: 700; letter-spacing: 6px; color: #2a1f0a; margin-bottom: 6px;">豆 豆</div>
+                <div style="display: flex; justify-content: center; align-items: center; gap: 6px; flex-wrap: wrap; font-size: 8.5px; color: #8b7355; letter-spacing: 0.6px;">
+                  <span>BIRTHDAY · 2026.06.28</span><span style="opacity: 0.4;">·</span><span>WEIGHT · 3200G</span><span style="opacity: 0.4;">·</span><span>HEIGHT · 50CM</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div style="flex-shrink: 0; padding: 8px 16px 22px; background: #fff8f4;">
+            <button onClick="{{ pushConfirm }}" style="width: 100%; height: 50px; border-radius: 26px; border: 0; background: linear-gradient(135deg, #ff6e9c 0%, #ff5b8a 100%); color: #fff; font-size: 16px; font-weight: 500; letter-spacing: 1px; cursor: {{ pushCtaCursor }}; opacity: {{ pushCtaOpacity }}; box-shadow: {{ pushCtaShadow }}; font-family: inherit;">完成，生成纪念拼图</button>
+          </div>
+
+          <sc-if value="{{ pushSheetOpen }}" hint-placeholder-val="{{ false }}">
+            <div style="position: absolute; inset: 0; z-index: 40; background: #000; display: flex; flex-direction: column; color: rgba(255,255,255,0.9); animation: fadeIn 0.2s;">
+              <div style="flex-shrink: 0; padding: 48px 12px 10px; display: flex; align-items: center; justify-content: space-between;">
+                <div onClick="{{ closeSheet }}" style="width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 20px; line-height: 1;">✕</div>
+                <div style="display: flex; align-items: center; gap: 4px; font-size: 16px; font-weight: 500; cursor: pointer;">宝宝的云相册<span style="font-size: 10px; opacity: 0.8;">▼</span></div>
+                <div style="width: 36px;"></div>
+              </div>
+              <div style="flex: 1; min-height: 0; overflow-y: auto;">
+                <sc-for list="{{ albumGroups }}" as="ag" hint-placeholder-count="2">
+                  <div>
+                    <div style="display: flex; align-items: center; justify-content: space-between; padding: 8px 14px 6px; position: sticky; top: 0; z-index: 2; background: rgba(0,0,0,0.72); backdrop-filter: blur(12px); border-bottom: 0.5px solid rgba(255,255,255,0.08);">
+                      <span style="font-size: 14px; font-weight: 500;">{{ ag.date }}</span>
+                      <span onClick="{{ ag.onSelectAll }}" style="color: #ff4d88; font-size: 14px; font-weight: 500; cursor: pointer; padding: 4px 0;">全选</span>
+                    </div>
+                    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; padding: 0 2px 12px;">
+                      <sc-for list="{{ ag.items }}" as="ai" hint-placeholder-count="8">
+                        <sc-if value="{{ ai.isWechat }}" hint-placeholder-val="{{ false }}">
+                          <div style="aspect-ratio: 1; background: #2c2c2e; border-radius: 2px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; cursor: pointer;">
+                            <span style="width: 28px; height: 28px; border-radius: 6px; background: #07c160; display: flex; align-items: center; justify-content: center; font-size: 15px; line-height: 1; color: #fff; font-weight: 500;">微</span>
+                            <span style="font-size: 11px; color: rgba(255,255,255,0.48);">从微信导入</span>
+                          </div>
+                        </sc-if>
+                        <sc-if value="{{ ai.isPhoto }}" hint-placeholder-val="{{ true }}">
+                          <div onClick="{{ ai.onTap }}" style="aspect-ratio: 1; border-radius: 2px; overflow: hidden; position: relative; cursor: pointer; box-shadow: {{ ai.ring }};">
+                            <img src="{{ ai.src }}" alt="" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                            <sc-if value="{{ ai.live }}" hint-placeholder-val="{{ false }}">
+                              <div style="position: absolute; bottom: 5px; left: 5px; width: 14px; height: 14px; pointer-events: none;">
+                                <svg viewBox="0 0 24 24" width="14" height="14" fill="none"><circle cx="12" cy="12" r="9" stroke="#fff" stroke-opacity="0.9" stroke-width="1.5"></circle><circle cx="12" cy="12" r="4" fill="#fff" fill-opacity="0.95"></circle></svg>
+                              </div>
+                            </sc-if>
+                            <div style="position: absolute; top: 5px; right: 5px; width: 18px; height: 18px; border-radius: 9px; border: {{ ai.badgeBorder }}; background: {{ ai.badgeBg }}; display: flex; align-items: center; justify-content: center; font-size: 10px; color: #fff; font-weight: 500; box-sizing: border-box;">{{ ai.badge }}</div>
+                          </div>
+                        </sc-if>
+                      </sc-for>
+                    </div>
+                  </div>
+                </sc-for>
+              </div>
+              <div style="flex-shrink: 0; border-top: 0.5px solid rgba(255,255,255,0.1); background: #0a0a0a; padding: 10px 14px 26px; display: flex; align-items: center; justify-content: space-between; gap: 12px;">
+                <span style="font-size: 13px; color: {{ albumHintColor }};">请选择一张照片</span>
+                <button onClick="{{ albumDone }}" style="flex-shrink: 0; height: 28px; padding: 0 12px; border-radius: 6px; border: 0; background: {{ albumBtnBg }}; color: {{ albumBtnColor }}; font-size: 13px; font-weight: 500; letter-spacing: 0.2px; cursor: {{ albumBtnCursor }}; font-family: inherit;">完成</button>
+              </div>
+            </div>
+          </sc-if>
+
+          <!-- 成品预览弹窗 -->
+          <sc-if value="{{ previewOpen }}" hint-placeholder-val="{{ false }}">
+            <div onClick="{{ closePreview }}" style="position: absolute; inset: 0; background: rgba(28,16,20,0.42); z-index: 45; animation: fadeIn 0.25s;"></div>
+            <div style="position: absolute; left: 0; right: 0; bottom: 0; z-index: 46; background: #fff; border-radius: 22px 22px 0 0; box-shadow: 0 -10px 40px rgba(40,20,28,0.22); animation: sheetUp 0.32s cubic-bezier(.4,0,.2,1); display: flex; flex-direction: column; padding-bottom: 22px;">
+              <div style="display: flex; justify-content: center; padding-top: 9px;"><div style="width: 38px; height: 4px; border-radius: 2px; background: #e8ddd5;"></div></div>
+              <div style="position: relative; display: flex; align-items: center; justify-content: center; padding: 14px 18px 2px;">
+                <div style="font-size: 17px; font-weight: 700; letter-spacing: 0.3px;">成品预览</div>
+                <div onClick="{{ closePreview }}" style="position: absolute; right: 16px; top: 9px; width: 28px; height: 28px; border-radius: 14px; background: #f5efe9; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 13px; color: #9c8e94;">✕</div>
+              </div>
+              <div style="position: relative; padding: 16px 0 4px;">
+                <div onClick="{{ previewPrev }}" style="position: absolute; top: 46%; left: 8px; z-index: 5; width: 34px; height: 34px; border-radius: 50%; background: #fff; border: 0.5px solid #ece4de; box-shadow: 0 4px 14px rgba(80,35,48,0.12); display: flex; align-items: center; justify-content: center; cursor: pointer;">
+                  <svg width="8" height="13" viewBox="0 0 10 16" fill="none"><path d="M8.5 1L1.5 8L8.5 15" stroke="#5b4a52" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                </div>
+                <div onClick="{{ previewNext }}" style="position: absolute; top: 46%; right: 8px; z-index: 5; width: 34px; height: 34px; border-radius: 50%; background: #fff; border: 0.5px solid #ece4de; box-shadow: 0 4px 14px rgba(80,35,48,0.12); display: flex; align-items: center; justify-content: center; cursor: pointer;">
+                  <svg width="8" height="13" viewBox="0 0 10 16" fill="none"><path d="M1.5 1L8.5 8L1.5 15" stroke="#5b4a52" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                </div>
+                <div style="overflow: hidden;">
+                  <div style="display: flex; transform: translateX({{ previewTrackX }}); transition: transform 0.42s cubic-bezier(.4,0,.2,1);">
+                    <sc-for list="{{ previewSlides }}" as="ps" hint-placeholder-count="2">
+                      <div style="flex: 0 0 100%; display: flex; flex-direction: column; align-items: center; padding: 0 28px; box-sizing: border-box;">
+                        <span style="display: inline-flex; align-items: center; font-size: 12px; font-weight: 600; color: #ff4d88; background: rgba(255,77,136,0.08); padding: 4px 13px; border-radius: 80px; margin-bottom: 13px; white-space: nowrap;">{{ ps.tag }}</span>
+                        <div style="width: 222px; background: #fffaf6; border: 1.5px solid #8b7355; border-radius: 5px; box-shadow: inset 0 0 0 5px #fff, inset 0 0 0 6px rgba(139,115,85,0.22); overflow: hidden;">
+                          <div style="display: grid; grid-template-columns: {{ ps.cols }}; gap: 5px; padding: 10px 10px 0;">
+                            <sc-for list="{{ ps.cells }}" as="psc" hint-placeholder-count="9">
+                              <div style="display: flex; flex-direction: column; min-width: 0; overflow: hidden; border-radius: 2px; background: #fff;">
+                                <div style="aspect-ratio: 1; overflow: hidden; background: #f0e8e2;"><img src="{{ psc.src }}" alt="" style="width: 100%; height: 100%; object-fit: cover; display: block;"></div>
+                                <div style="flex-shrink: 0; display: flex; align-items: center; justify-content: center; background: #fffaf6; padding: 3px 4px; border-top: 0.5px solid rgba(139,115,85,0.18);">
+                                  <span style="font-family: 'Noto Serif SC', serif; font-style: italic; font-weight: 500; font-size: 9px; color: #2a1f24; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ psc.cap }}</span>
+                                </div>
+                              </div>
+                            </sc-for>
+                          </div>
+                          <div style="padding: 11px 14px 13px; text-align: center; border-top: 1px solid rgba(139,115,85,0.22); margin-top: 10px;">
+                            <div style="font-family: 'Noto Serif SC', serif; font-size: 16px; font-weight: 700; letter-spacing: 6px; color: #2a1f0a;">豆 豆</div>
+                          </div>
+                        </div>
+                      </div>
+                    </sc-for>
+                  </div>
+                </div>
+                <div style="display: flex; justify-content: center; gap: 7px; margin-top: 11px;">
+                  <sc-for list="{{ previewDots }}" as="pd" hint-placeholder-count="2">
+                    <div onClick="{{ pd.onTap }}" style="width: {{ pd.w }}; height: 6px; border-radius: 3px; background: {{ pd.bg }}; cursor: pointer; transition: all 0.3s;"></div>
+                  </sc-for>
+                </div>
+              </div>
+              <div style="padding: 12px 18px 8px;">
+                <button onClick="{{ previewMakeSame }}" style="width: 100%; height: 50px; border-radius: 25px; border: 0; background: linear-gradient(135deg, #ff6e9c, #ff4d88); color: #fff; font-size: 15.5px; font-weight: 700; letter-spacing: 1px; cursor: pointer; box-shadow: 0 10px 22px -8px rgba(255,77,136,0.55); font-family: inherit;">做同款</button>
+              </div>
+            </div>
+          </sc-if>
+        </div>
+      </sc-if>
+
+      <!-- ═══════════ 页面 4 · 完成页 ═══════════ -->
+      <sc-if value="{{ isDone }}" hint-placeholder-val="{{ false }}">
+        <div data-screen-label="完成页" style="position: absolute; inset: 0; background: #fffaf6; overflow: hidden;">
+          {{ confettiEl }}
+          <div style="position: absolute; inset: 0; overflow-y: auto; padding-bottom: 30px;">
+            <div style="display: flex; align-items: center; justify-content: space-between; padding: 56px 16px 4px;">
+              <div onClick="{{ backHome }}" style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 17px; color: #5b4a52;">✕</div>
+              <div onClick="{{ openWorks }}" style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; cursor: pointer;">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="1" y="1" width="7" height="7" rx="1.5" stroke="#2a1f24" stroke-width="1.5"></rect><rect x="10" y="1" width="7" height="7" rx="1.5" stroke="#2a1f24" stroke-width="1.5"></rect><rect x="1" y="10" width="7" height="7" rx="1.5" stroke="#2a1f24" stroke-width="1.5"></rect><rect x="10" y="10" width="7" height="7" rx="1.5" stroke="#2a1f24" stroke-width="1.5"></rect></svg>
+              </div>
+            </div>
+            <div style="text-align: center; margin-top: 8px;">
+              <div style="font-family: 'Noto Serif SC', serif; font-size: 30px; font-weight: 700; letter-spacing: 2px;">纪念卡已保存</div>
+              <div style="margin-top: 6px; font-size: 12px; color: #9c8e94;">已自动保存至时间轴</div>
+            </div>
+            <div style="display: flex; justify-content: center; margin-top: 18px;">
+              <div style="position: relative; width: 290px; border-radius: 4px; padding: 11px 11px 13px; box-sizing: border-box; background: {{ selFrameBg }}; border: 1.5px solid {{ selBorder }}; box-shadow: inset 0 0 0 5px #fff, inset 0 0 0 6px {{ selInner }}, {{ selShadow }};">
+                <div style="display: grid; grid-template-columns: {{ selCols }}; gap: 3px;">
+                  <sc-for list="{{ doneCells }}" as="dc" hint-placeholder-count="9">
+                    <div style="display: flex; flex-direction: column; min-width: 0; overflow: hidden; border-radius: 2px; background: #fff;">
+                      <div style="aspect-ratio: 1; overflow: hidden; background: #f0e8e2;">
+                        <img src="{{ dc.src }}" alt="" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                      </div>
+                      <sc-if value="{{ dc.showCap }}" hint-placeholder-val="{{ false }}">
+                        <div style="flex-shrink: 0; font-family: 'Noto Serif SC', serif; font-style: italic; font-size: 8px; color: #5b4a52; text-align: center; padding: 2.5px 1px; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ dc.cap }}</div>
+                      </sc-if>
+                    </div>
+                  </sc-for>
+                </div>
+                <div style="margin-top: 10px; text-align: center;">
+                  <div style="font-family: 'Noto Serif SC', serif; font-size: 17px; font-weight: 600; letter-spacing: 6px; color: #2a1f24;">豆 豆</div>
+                  <div style="margin-top: 3px; font-size: 8px; letter-spacing: 1px; color: #8b7355;">BIRTHDAY 2026.06.28 · WEIGHT 3.2KG · HEIGHT 50CM</div>
+                </div>
+                <div style="position: absolute; right: 12px; bottom: 9px; font-size: 8px; color: rgba(255,91,138,0.65);">美柚 · 成长纪念卡</div>
+              </div>
+            </div>
+            <div style="padding: 22px 24px 0; display: flex; flex-direction: column; gap: 10px;">
+              <button onClick="{{ again }}" style="width: 100%; height: 50px; border-radius: 26px; border: 0; background: linear-gradient(135deg, #ff6e9c 0%, #ff5b8a 100%); color: #fff; font-size: 15px; font-weight: 700; letter-spacing: 1px; cursor: pointer; box-shadow: 0 8px 18px -6px rgba(255,91,138,0.5); font-family: inherit;">再做一张</button>
+              <button onClick="{{ openShare }}" style="width: 100%; height: 50px; border-radius: 26px; border: 1.5px solid #ff5b8a; background: #fff; color: #ff5b8a; font-size: 15px; font-weight: 700; letter-spacing: 1px; cursor: pointer; font-family: inherit;">保存并分享</button>
+            </div>
+          </div>
+
+          <sc-if value="{{ shareOpen }}" hint-placeholder-val="{{ false }}">
+            <div onClick="{{ closeShare }}" style="position: absolute; inset: 0; background: rgba(0,0,0,0.35); z-index: 30; animation: fadeIn 0.25s;"></div>
+            <div style="position: absolute; left: 0; right: 0; bottom: 0; z-index: 31; background: #f7f3ef; border-radius: 16px 16px 0 0; animation: sheetUp 0.32s cubic-bezier(.4,0,.2,1); padding-bottom: 30px;">
+              <div style="display: flex; justify-content: center; padding-top: 8px;"><div style="width: 36px; height: 4px; border-radius: 2px; background: #e0d6cc;"></div></div>
+              <div style="text-align: center; padding: 10px 0 4px; font-size: 15px; font-weight: 700;">分享纪念卡</div>
+              <div style="display: flex; justify-content: space-around; padding: 14px 24px 18px;">
+                <sc-for list="{{ sharePlatforms }}" as="pf" hint-placeholder-count="4">
+                  <div onClick="{{ closeShare }}" style="display: flex; flex-direction: column; align-items: center; gap: 7px; cursor: pointer;">
+                    <div style="width: 52px; height: 52px; border-radius: 26px; background: {{ pf.bg }}; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 600;">{{ pf.icon }}</div>
+                    <span style="font-size: 11px; color: #5b4a52;">{{ pf.name }}</span>
+                  </div>
+                </sc-for>
+              </div>
+              <div style="padding: 0 16px;">
+                <button onClick="{{ closeShare }}" style="width: 100%; height: 44px; border-radius: 10px; border: 0; background: #fff; color: #2a1f24; font-size: 14px; font-weight: 500; cursor: pointer; font-family: inherit;">取消</button>
+              </div>
+            </div>
+          </sc-if>
+        </div>
+      </sc-if>
+
+      <!-- ═══════════ 页面 5 · 我的作品页 ═══════════ -->
+      <sc-if value="{{ isWorks }}" hint-placeholder-val="{{ false }}">
+        <div data-screen-label="我的作品页" style="position: absolute; inset: 0; background: #fffaf6;">
+          <div style="display: flex; align-items: center; padding: 56px 16px 8px; gap: 8px;">
+            <div onClick="{{ backWorks }}" style="width: 36px; height: 36px; margin-left: -8px; display: flex; align-items: center; justify-content: center; cursor: pointer;">
+              <svg width="9" height="14" viewBox="0 0 10 16" fill="none"><path d="M8.5 1L1.5 8L8.5 15" stroke="#2a1f24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+            </div>
+            <div style="font-size: 17px; font-weight: 600;">我的作品</div>
+          </div>
+          <div style="padding: 6px 16px;">
+            <sc-for list="{{ works }}" as="wk" hint-placeholder-count="3">
+              <div style="display: flex; align-items: center; gap: 14px; padding: 14px 0; border-bottom: 0.5px solid #f0e2d8;">
+                <div style="width: 72px; height: 72px; flex-shrink: 0; border-radius: 4px; overflow: hidden; box-sizing: border-box; background: {{ wk.frameBg }}; border: 1px solid {{ wk.border }}; box-shadow: inset 0 0 0 2px #fff, inset 0 0 0 2.5px rgba(139,115,85,0.2);">
+                  <div style="display: grid; grid-template-columns: {{ wk.cols }}; gap: 1px; padding: 1px; height: 100%; box-sizing: border-box;">
+                    <sc-for list="{{ wk.cells }}" as="wc" hint-placeholder-count="9">
+                      <div style="overflow: hidden; min-width: 0; min-height: 0; background: #ddd6cf;"><img src="{{ wc.src }}" alt="" style="width: 100%; height: 100%; object-fit: cover; display: block;"></div>
+                    </sc-for>
+                  </div>
+                </div>
+                <div style="flex: 1; min-width: 0;">
+                  <div style="font-size: 14px; font-weight: 500; color: #2a1f24; line-height: 1.35; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{ wk.name }}</div>
+                  <div style="margin-top: 4px; font-size: 11px; color: #9c8e94;">{{ wk.date }}</div>
+                </div>
+                <button style="flex-shrink: 0; height: 32px; padding: 0 14px; border-radius: 16px; border: {{ wk.btnBorder }}; background: {{ wk.btnBg }}; color: {{ wk.btnColor }}; font-size: 12px; font-weight: 500; cursor: pointer; white-space: nowrap; font-family: inherit;">{{ wk.btnLabel }}</button>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </sc-if>
+
+    </div>
+  </x-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = {
+    screen: 'meiyou',
+    ringVisible: true,
+    heroIdx: 0,
+    count: 12847,
+    tab: '孕期时光',
+    layout: '3x3',
+    slots: ['assets/p1.jpg','assets/p2.jpg','assets/p3.jpg','assets/p4.jpg','assets/p5.jpg',null,null,null,null],
+    sheetOpen: false,
+    pickIdx: 0,
+    shareOpen: false,
+    worksFrom: 'home',
+    pushTweak: 'upload',
+    pushSlots: null,
+    albumSel: null,
+    pushLayout: '3x3',
+    previewOpen: false,
+    previewIdx: 0,
+  };
+
+  PUSH_META = {
+    2: { date: '2026.06.02', tip: '记录第一次胎动', prev: 'assets/p2.jpg' },
+    3: { date: '2026.06.20', tip: '留下孕肚合影', prev: 'assets/p3.jpg' },
+    4: { date: '2026.07.05', tip: '和宝宝说句话', prev: 'assets/p5.jpg' },
+    5: { date: '2026.07.15', tip: '拍一张侧面照', prev: 'assets/p6.jpg' },
+    6: { date: '2026.07.22', w: '+8', tip: '拍一张大肚剪影', prev: 'assets/p4.jpg' },
+    7: { date: '2026.08.19', w: '+12', tip: '布置宝宝小床', prev: 'assets/p7.jpg' },
+    8: { date: '2026.06.28', prev: 'assets/p1.jpg' },
+  };
+
+  buildPushSlots(tweak) {
+    if (tweak === 'upload') return [this.PHOTOS[0], this.PHOTOS[1], null, null, null, null, null, null, null];
+    if (tweak === 'locked') return [...this.PHOTOS.slice(0, 6), null, null, null];
+    return [...this.NINE];
+  }
+
+  PHOTOS = ['assets/p1.jpg','assets/p2.jpg','assets/p3.jpg','assets/p4.jpg','assets/p5.jpg','assets/p6.jpg','assets/p7.jpg'];
+  NINE = ['assets/p1.jpg','assets/p2.jpg','assets/p3.jpg','assets/p4.jpg','assets/p5.jpg','assets/p6.jpg','assets/p7.jpg','assets/p2.jpg','assets/p3.jpg'];
+  SAMPLES = [
+    { demo: true, tag: '让回忆生动起来 — 去制作' },
+    { src: 'assets/sample1.png', tag: '满月日记' },
+    { src: 'assets/sample2.png', tag: '宝宝 30 天' },
+    { src: 'assets/sample3.png', tag: '出生第一周' },
+    { src: 'assets/sample4.png', tag: '那些无法复刻的瞬间' },
+    { src: 'assets/sample5.png', tag: '百日之喜' },
+    { src: 'assets/sample6.jpg', tag: '初见第一面' },
+  ];
+  PAPER = { border: '#8b7355', frameBg: '#fffaf6', innerLine: 'rgba(139,115,85,0.22)', thumbBg: '#f7f0e8', shadow: '0 10px 28px rgba(80,30,40,0.18)' };
+  CAPS = {
+    '孕期时光': ['孕5周','孕8周','孕12周','孕16周','孕20周','孕24周','孕28周','孕32周','出生'],
+    '宝宝成长': ['出生第1天','出生第7天','满月','百日','6个月','9个月','1岁','1岁半','2岁'],
+  };
+
+  componentDidMount() {
+    this._heroT = setInterval(() => {
+      if (this.state.screen === 'home') {
+        this.setState((s) => ({ heroIdx: (s.heroIdx + 1) % this.SAMPLES.length }));
+      }
+    }, 2600);
+    this._cntT = setInterval(() => {
+      if (this.state.screen === 'home') {
+        this.setState((s) => ({ count: s.count + 1 + Math.floor(Math.random() * 3) }));
+      }
+    }, 4000);
+  }
+  componentWillUnmount() {
+    clearInterval(this._heroT);
+    clearInterval(this._cntT);
+  }
+
+  confetti() {
+    if (this._confetti) return this._confetti;
+    const colors = ['#ff5b8a','#f5c26b','#7ab8f5','#b78af5','#ffd2dd','#8fd6a8','#ffa45e','#a8d8f0'];
+    const parts = [];
+    for (let i = 0; i < 30; i += 1) {
+      const round = i % 3 === 0;
+      parts.push(React.createElement('div', {
+        key: i,
+        style: {
+          position: 'absolute',
+          left: (Math.random() * 96 + 2) + '%',
+          top: -24,
+          width: round ? 8 : 6,
+          height: round ? 8 : 14,
+          borderRadius: round ? '50%' : 2,
+          background: colors[i % colors.length],
+          animation: 'confettiFall ' + (3.2 + Math.random() * 3.5).toFixed(2) + 's linear ' + (Math.random() * 3).toFixed(2) + 's infinite',
+          transform: 'translateY(-30px)',
+        },
+      }));
+    }
+    this._confetti = React.createElement('div', {
+      style: { position: 'absolute', inset: 0, overflow: 'hidden', pointerEvents: 'none', zIndex: 5 },
+    }, parts);
+    return this._confetti;
+  }
+
+  pushVals() {
+    const s = this.state;
+    if (s.screen !== 'push') {
+      return { isPush: false, openPreview: () => {}, pushSheetOpen: false, pushComplete: false, pushNotComplete: true, gridTabs: [], pushTweakOpts: [], pushRingCells: [], pushCells: [], albumGroups: [], albumDone: () => {}, albumHintColor: 'rgba(255,255,255,0.48)', albumBtnBg: 'rgba(255,255,255,0.14)', albumBtnColor: 'rgba(255,255,255,0.38)', albumBtnCursor: 'default', pushRingDash: '0 213.6', pushRingPct: 0, pushRingSub: '', pushCtaCursor: 'pointer', pushCtaOpacity: 1, pushCtaShadow: 'none', pushConfirm: () => {}, previewOpen: false, previewSlides: [], previewTrackX: '0%', previewDots: [], previewPrev: () => {}, previewNext: () => {}, closePreview: () => {}, previewMakeSame: () => {}, };
+    }
+    const tweak = s.pushTweak;
+    const slots = s.pushSlots || this.buildPushSlots(tweak);
+    const caps = this.CAPS['孕期时光'];
+    const isLockMode = tweak === 'locked';
+    const layout = s.pushLayout || '3x3';
+    const cellCount = layout === '2x2' ? 4 : 9;
+    const pushCols = layout === '2x2' ? 'repeat(2, 1fr)' : 'repeat(3, 1fr)';
+
+    const paper = this.PAPER;
+
+    const gridTabs = [
+      { id: '3x3', label: '九宫格' },
+      { id: '2x2', label: '四宫格' },
+    ].map((o) => {
+      const active = layout === o.id;
+      return {
+        key: o.id,
+        label: o.label,
+        bg: active ? '#fff9fb' : '#fff',
+        color: active ? '#ff4d88' : '#9c8e94',
+        fw: active ? 600 : 400,
+        shadow: 'none',
+        divider: o.id === '3x3' ? '1px solid rgba(0,0,0,0.07)' : 'none',
+        onTap: () => this.setState((st) => ({ pushLayout: o.id, pushSlots: this.buildPushSlots(st.pushTweak) })),
+      };
+    });
+
+    const collected = slots.slice(0, cellCount).filter(Boolean).length;
+    const pct = Math.min(100, Math.round((collected / 9) * 100));
+    const dash = ((pct / 100) * 213.6).toFixed(1) + ' 213.6';
+    const allFilled = collected === 9;
+    const ctaDisabled = isLockMode || !allFilled;
+
+    const sub = isLockMode
+      ? '已完成 6/9 · 再填 3 格即可生成'
+      : (allFilled ? '恭喜，豆豆的九宫格已拼满' : ('已完成 ' + collected + '/9 · 再填 ' + (9 - collected) + ' 格即可生成'));
+
+    const pushTweakOpts = [
+      { id: 'upload', label: '待上传·＋' },
+      { id: 'locked', label: '未到时间' },
+      { id: 'completed', label: '已完成' },
+    ].map((o) => ({
+      key: o.id,
+      label: o.label,
+      bg: tweak === o.id ? '#fff' : 'transparent',
+      color: tweak === o.id ? '#ff4d88' : '#9c8e94',
+      fw: tweak === o.id ? 600 : 400,
+      shadow: tweak === o.id ? '0 2px 8px rgba(0,0,0,0.08)' : 'none',
+      onTap: () => this.setState({ pushTweak: o.id, pushSlots: this.buildPushSlots(o.id), sheetOpen: false }),
+    }));
+
+    const pushRingCells = Array.from({ length: 9 }, (_, i) => ({
+      key: i,
+      filled: !!slots[i],
+      empty: !slots[i],
+      src: slots[i] || '',
+    }));
+
+    const pushCells = Array.from({ length: cellCount }, (_, i) => {
+      const src = slots[i];
+      const meta = this.PUSH_META[i] || {};
+      const isLock = isLockMode && (i === 6 || i === 7);
+      const isBirth = isLockMode && i === 8;
+      const isPhoto = !!src && !isLock && !isBirth;
+      const isPlus = !src && !isLock && !isBirth;
+      let cap = caps[i] || '';
+      let capColor = isPhoto ? '#2a1f24' : '#c4a09a';
+      let capW = isPhoto ? 700 : 500;
+      let capStyle = 'italic';
+      if (isLock) { capColor = '#5d5448'; capW = 500; }
+      if (isBirth) { cap = '✦ 宝宝出生 ✦'; capColor = '#8a6f3e'; capW = 500; capStyle = 'normal'; }
+      return {
+        key: tweak + '-' + i,
+        isPhoto, isPlus, isLock, isBirth,
+        src: src || '',
+        bgSrc: meta.prev || this.PHOTOS[i % this.PHOTOS.length],
+        lockW: meta.w || '',
+        lockTip: meta.tip || '',
+        lockDate: meta.date || '',
+        cap, capColor, capW, capStyle,
+        cursor: (isLock || isBirth) ? 'default' : 'pointer',
+        onBody: () => {
+          if (isLock || isBirth) return;
+          this.setState({ sheetOpen: true, pickIdx: i, albumSel: src || null });
+        },
+        onPill: (e) => {
+          e.stopPropagation();
+          this.setState({ sheetOpen: true, pickIdx: i, albumSel: src || null });
+        },
+      };
+    });
+
+    const albumSel = s.albumSel;
+    const albumDates = ['2026年5月17日', '2026年5月16日', '2026年5月12日', '2026年5月8日'];
+    const albumGroups = albumDates.map((date, di) => {
+      const items = [];
+      const count = di === 0 ? 20 : 12;
+      for (let i = 0; i < count; i += 1) {
+        const src = this.PHOTOS[(di * 16 + i) % this.PHOTOS.length];
+        const selP = albumSel === src;
+        items.push({
+          key: date + '-p' + i,
+          isWechat: false,
+          isPhoto: true,
+          src,
+          live: i % 5 === 0,
+          ring: selP ? 'inset 0 0 0 2px #ff4d88' : 'none',
+          badge: selP ? '✓' : '',
+          badgeBorder: selP ? 'none' : '1.5px solid rgba(255,255,255,0.92)',
+          badgeBg: selP ? '#ff4d88' : 'rgba(0,0,0,0.25)',
+          onTap: () => this.setState({ albumSel: src }),
+        });
+      }
+      return {
+        key: date,
+        date,
+        items,
+        onSelectAll: () => this.setState({ albumSel: this.PHOTOS[(di * 16) % this.PHOTOS.length] }),
+      };
+    });
+
+    const isComplete = !isLockMode && allFilled;
+
+    const caps9 = this.CAPS['孕期时光'];
+    const caps4 = ['出生第1天', '第7天', '满月', '百天'];
+    const previewSlides = [
+      { key: 'nine', tag: '九宫格模版', cols: 'repeat(3, 1fr)', cells: this.NINE.map((src, i) => ({ key: i, src, cap: caps9[i] || '' })) },
+      { key: 'four', tag: '四宫格模版', cols: 'repeat(2, 1fr)', cells: this.PHOTOS.slice(0, 4).map((src, i) => ({ key: i, src, cap: caps4[i] || '' })) },
+    ];
+    const pIdx = s.previewIdx || 0;
+    const previewDots = [0, 1].map((i) => ({
+      key: i,
+      w: i === pIdx ? '18px' : '6px',
+      bg: i === pIdx ? '#ff4d88' : '#e3d6cd',
+      onTap: () => this.setState({ previewIdx: i }),
+    }));
+
+    return {
+      isPush: true,
+      openPreview: () => this.setState({ previewOpen: true, previewIdx: 0 }),
+      pushSheetOpen: s.sheetOpen,
+      pushComplete: isComplete,
+      pushNotComplete: !isComplete,
+      pushCols,
+      pushFrameBg: paper.frameBg,
+      pushBorder: paper.border,
+      pushInner: paper.innerLine,
+      pushShadow: paper.shadow,
+      gridTabs,
+      pushTweakOpts,
+      pushRingCells,
+      pushCells,
+      albumGroups,
+      albumHintColor: albumSel ? 'rgba(255,255,255,0.9)' : 'rgba(255,255,255,0.48)',
+      albumBtnBg: albumSel ? '#ff4d88' : 'rgba(255,255,255,0.14)',
+      albumBtnColor: albumSel ? '#fff' : 'rgba(255,255,255,0.38)',
+      albumBtnCursor: albumSel ? 'pointer' : 'default',
+      albumDone: () => {
+        if (!this.state.albumSel) return;
+        this.setState((st) => {
+          const next = [...(st.pushSlots || this.buildPushSlots(st.pushTweak))];
+          next[st.pickIdx] = st.albumSel;
+          return { pushSlots: next, sheetOpen: false, albumSel: null };
+        });
+      },
+      pushRingDash: dash,
+      pushRingPct: pct,
+      pushRingSub: sub,
+      pushCtaCursor: ctaDisabled ? 'not-allowed' : 'pointer',
+      pushCtaOpacity: ctaDisabled ? 0.5 : 1,
+      pushCtaShadow: ctaDisabled ? 'none' : '0 8px 18px -6px rgba(255,91,138,0.55)',
+      pushConfirm: () => {
+        if (ctaDisabled) return;
+        this.setState({ slots: [...slots], screen: 'done', sheetOpen: false });
+      },
+      previewOpen: s.previewOpen,
+      previewSlides,
+      previewTrackX: (pIdx * -100) + '%',
+      previewDots,
+      previewPrev: () => this.setState((st) => ({ previewIdx: Math.max(0, (st.previewIdx || 0) - 1) })),
+      previewNext: () => this.setState((st) => ({ previewIdx: Math.min(1, (st.previewIdx || 0) + 1) })),
+      closePreview: () => this.setState({ previewOpen: false }),
+      previewMakeSame: () => this.setState((st) => ({ previewOpen: false, pushLayout: (st.previewIdx || 0) === 0 ? '3x3' : '2x2', pushSlots: this.buildPushSlots(st.pushTweak) })),
+    };
+  }
+
+  renderVals() {
+    const s = this.state;
+    const N = this.SAMPLES.length;
+
+    const heroCards = [];
+    this.SAMPLES.forEach((sm, i) => {
+      const off = ((i - s.heroIdx) + N) % N;
+      let pos = null;
+      if (off === 0) pos = 'c'; else if (off === 1) pos = 'r'; else if (off === N - 1) pos = 'l';
+      if (!pos) return;
+      heroCards.push({
+        key: i,
+        isDemo: !!sm.demo,
+        notDemo: !sm.demo,
+        src: sm.src || '',
+        tag: sm.tag,
+        dx: pos === 'c' ? 0 : (pos === 'l' ? -72 : 72),
+        rot: pos === 'c' ? -2 : (pos === 'l' ? -10 : 10),
+        scale: pos === 'c' ? 1 : 0.78,
+        z: pos === 'c' ? 3 : 1,
+        op: pos === 'c' ? 1 : 0.5,
+        shadow: pos === 'c'
+          ? '0 18px 38px -12px rgba(80,30,40,0.28), 0 4px 12px rgba(80,30,40,0.12)'
+          : '0 8px 18px -8px rgba(80,30,40,0.18)',
+        onTap: () => this.setState({ heroIdx: i }),
+      });
+    });
+
+    const heroDots = this.SAMPLES.map((_, i) => ({
+      key: i,
+      w: i === s.heroIdx ? 14 : 5,
+      bg: i === s.heroIdx ? '#ff5b8a' : '#e8d8cd',
+    }));
+
+    const layout = s.layout;
+    const selPaper = this.PAPER;
+    const selCellCount = layout === '2x2' ? 4 : 9;
+    const caps = this.CAPS[s.tab] || this.CAPS['孕期时光'];
+
+    const previewCells = Array.from({ length: selCellCount }, (_, i) => ({
+      key: i,
+      src: this.NINE[i],
+      cap: caps[i] || '',
+      showCap: true,
+    }));
+
+    const tabs = ['孕期时光', '宝宝成长'].map((t) => ({
+      key: t,
+      name: t,
+      onTap: () => this.setState({ tab: t }),
+      fw: t === s.tab ? 700 : 400,
+      color: t === s.tab ? '#ff5b8a' : '#5b4a52',
+      line: t === s.tab ? '#ff5b8a' : 'transparent',
+    }));
+
+    const templates = [
+      { g: '3x3', cells: 9, kind: '九宫格' },
+      { g: '2x2', cells: 4, kind: '四宫格' },
+    ].map(({ g, cells, kind }) => {
+      const p = this.PAPER;
+      const active = g === s.layout;
+      return {
+        key: g,
+        id: g,
+        name: kind,
+        nameColor: active ? '#ff5b8a' : '#9c8e94',
+        frameBg: p.frameBg,
+        border: p.border,
+        thumbBg: active ? '#fff5f7' : '#fcf9f6',
+        ring: active ? '#ff5b8a' : '#eee2d8',
+        glow: active ? '0 0 0 3px rgba(255,91,138,0.12)' : 'none',
+        cols: g === '2x2' ? 'repeat(2, 1fr)' : 'repeat(3, 1fr)',
+        capH: 2.5,
+        cellPhotos: Array.from({ length: cells }, (_, i) => ({ key: i, src: this.NINE[i] })),
+        onTap: () => this.setState({ layout: g }),
+      };
+    });
+
+    const slotCells = Array.from({ length: selCellCount }, (_, i) => {
+      const src = s.slots[i];
+      const filled = !!src;
+      return {
+        key: i,
+        filled,
+        empty: !filled,
+        src: src || '',
+        backdrop: this.PHOTOS[i % this.PHOTOS.length],
+        cap: caps[i] || '',
+        showCap: true,
+        capColor: filled ? '#2a1f24' : '#d4a8b0',
+        onBody: () => {
+          if (filled) {
+            this.setState({ sheetOpen: true, pickIdx: i });
+          } else {
+            this.setState((st) => {
+              const slots = [...st.slots];
+              slots[i] = this.PHOTOS[i % this.PHOTOS.length];
+              return { slots };
+            });
+          }
+        },
+        onPill: (e) => {
+          e.stopPropagation();
+          this.setState({ sheetOpen: true, pickIdx: i });
+        },
+      };
+    });
+
+    const filledCount = s.slots.slice(0, selCellCount).filter(Boolean).length;
+    const missingCount = selCellCount - filledCount;
+
+    const sheetPhotos = this.PHOTOS.map((src, i) => {
+      const selPhoto = s.slots[s.pickIdx] === src;
+      return {
+        key: i,
+        src,
+        sel: selPhoto,
+        ring: selPhoto ? 'inset 0 0 0 2px #ff5b8a' : 'none',
+        onTap: () => this.setState((st) => {
+          const slots = [...st.slots];
+          slots[st.pickIdx] = src;
+          return { slots, sheetOpen: false };
+        }),
+      };
+    });
+
+    const doneCells = Array.from({ length: selCellCount }, (_, i) => ({
+      key: i,
+      src: s.slots[i] || this.NINE[i],
+      cap: caps[i] || '',
+      showCap: true,
+    }));
+
+    const ringCells = this.NINE.map((src, i) => ({
+      key: i,
+      filled: i < 2,
+      empty: i >= 2,
+      src,
+    }));
+
+    return {
+      isMeiyou: s.screen === 'meiyou',
+      isPush: s.screen === 'push',
+      isHome: s.screen === 'home',
+      isTpl: s.screen === 'tpl',
+      isFill: s.screen === 'fill',
+      isDone: s.screen === 'done',
+      isWorks: s.screen === 'works',
+
+      ringVisible: s.ringVisible,
+      ringCells,
+      tapGuide: () => this.setState({ screen: 'push', pushTweak: 'upload', pushSlots: this.buildPushSlots('upload'), sheetOpen: false, albumSel: null }),
+      hideRing: () => this.setState({ ringVisible: false }),
+      goMeiyou: () => this.setState({ screen: 'meiyou' }),
+
+      countText: s.count.toLocaleString('en-US'),
+      heroCards,
+      heroDots,
+      nineThumbs: this.NINE.map((src, i) => ({ key: i, src })),
+      sellPoints: [
+        { key: 1, label: '完全免费' },
+        { key: 2, label: '30 秒成图' },
+        { key: 3, label: '支持冲印' },
+        { key: 4, label: '10+ 模板' },
+      ],
+
+      selFrameBg: selPaper.frameBg,
+      selBorder: selPaper.border,
+      selInner: selPaper.innerLine,
+      selShadow: selPaper.shadow,
+      selCols: layout === '2x2' ? 'repeat(2, 1fr)' : 'repeat(3, 1fr)',
+      selName: layout === '2x2' ? '四宫格' : '九宫格',
+      selSub: selCellCount + ' 张照片 · 点击格子或下一步填入',
+      previewCells,
+      tabs,
+      templates,
+
+      slotCells,
+      hasMissing: missingCount > 0,
+      missingCount,
+      sheetOpen: s.sheetOpen,
+      sheetPhotos,
+
+      doneCells,
+      shareOpen: s.shareOpen,
+      sharePlatforms: [
+        { key: 1, name: '微信好友', bg: '#07c160', icon: '微' },
+        { key: 2, name: '朋友圈', bg: '#54b97f', icon: '⊕' },
+        { key: 3, name: '抖音', bg: '#161823', icon: '♪' },
+        { key: 4, name: '小红书', bg: '#ff2442', icon: '书' },
+      ],
+      confettiEl: s.screen === 'done' ? this.confetti() : null,
+
+      works: [
+        { layout: '3x3', name: '九宫格 · 豆豆', date: '2026.05.18', print: true, photos: [0, 1, 2, 3, 4, 5, 6, 7, 8] },
+        { layout: '2x2', name: '四宫格 · 豆豆', date: '2026.05.15', print: false, photos: [1, 2, 3, 4] },
+        { layout: '3x3', name: '九宫格 · 豆豆', date: '2026.05.10', print: false, photos: [3, 4, 5, 0, 1, 6, 2, 7, 1] },
+      ].map((w, wi) => {
+        const p = this.PAPER;
+        return {
+          key: wi,
+          name: w.name,
+          date: w.date,
+          frameBg: p.frameBg,
+          border: p.border,
+          cols: w.layout === '2x2' ? 'repeat(2, 1fr)' : 'repeat(3, 1fr)',
+          cells: w.photos.map((pi, i) => ({ key: i, src: this.PHOTOS[pi % this.PHOTOS.length] })),
+          btnLabel: w.print ? '立即印制' : '立即查看',
+          btnBorder: w.print ? '0' : '1px solid rgba(79,124,174,0.45)',
+          btnBg: w.print ? '#ff4d88' : '#f2f6fa',
+          btnColor: w.print ? '#fff' : '#4f7cae',
+        };
+      }),
+
+      ...this.pushVals(),
+
+      goTpl: () => this.setState({ screen: 'tpl' }),
+      backHome: () => this.setState({ screen: 'home', shareOpen: false }),
+      toFill: () => this.setState({ screen: 'fill' }),
+      backTpl: () => this.setState({ screen: 'tpl', sheetOpen: false }),
+      toDone: () => this.setState((st) => {
+        const slots = st.slots.map((x, i) => x || this.NINE[i]);
+        return { slots, screen: 'done', sheetOpen: false };
+      }),
+      again: () => this.setState({ screen: 'meiyou', shareOpen: false }),
+      openWorks: () => this.setState((st) => ({ worksFrom: st.screen, screen: 'works' })),
+      backWorks: () => this.setState((st) => ({ screen: st.worksFrom || 'home' })),
+      openShare: () => this.setState({ shareOpen: true }),
+      closeShare: () => this.setState({ shareOpen: false }),
+      closeSheet: () => this.setState({ sheetOpen: false }),
+    };
+  }
+}
+</script>
+</body>
+</html>
